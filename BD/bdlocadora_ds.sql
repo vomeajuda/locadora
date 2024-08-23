@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Ago-2024 às 15:46
+-- Tempo de geração: 23-Ago-2024 às 14:43
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -52,6 +52,17 @@ CREATE TABLE `clientes` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `combustivel`
+--
+
+CREATE TABLE `combustivel` (
+  `CombTipo` varchar(1) NOT NULL,
+  `CombNome` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `departamento`
 --
 
@@ -75,6 +86,39 @@ CREATE TABLE `funcionarios` (
   `funcFilho` int(1) NOT NULL,
   `funcSexo` varchar(1) NOT NULL,
   `funcAtivo` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ordem_de_servico`
+--
+
+CREATE TABLE `ordem_de_servico` (
+  `OsNum` int(11) NOT NULL,
+  `OsFuncMat` int(4) NOT NULL,
+  `OsClienteCPF` int(9) NOT NULL,
+  `OsVeicPlaca` varchar(7) NOT NULL,
+  `OsDataRetirada` date NOT NULL,
+  `OsDataDevolucao` date DEFAULT NULL,
+  `OsKMRetirada` decimal(8,2) NOT NULL,
+  `OsKMDevolucao` decimal(8,2) NOT NULL,
+  `OsStatus` tinyint(1) NOT NULL,
+  `OsValorPgto` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuarioLogin` int(11) NOT NULL,
+  `usuarioSenha` varchar(8) NOT NULL,
+  `usuarioFuncMat` int(4) DEFAULT NULL,
+  `usuarioSetor` int(11) NOT NULL,
+  `usuarioStatus` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
@@ -111,6 +155,12 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`clienteCPF`);
 
 --
+-- Índices para tabela `combustivel`
+--
+ALTER TABLE `combustivel`
+  ADD PRIMARY KEY (`CombTipo`);
+
+--
 -- Índices para tabela `departamento`
 --
 ALTER TABLE `departamento`
@@ -121,6 +171,18 @@ ALTER TABLE `departamento`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`funcMatricula`);
+
+--
+-- Índices para tabela `ordem_de_servico`
+--
+ALTER TABLE `ordem_de_servico`
+  ADD PRIMARY KEY (`OsNum`);
+
+--
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuarioLogin`);
 
 --
 -- Índices para tabela `veiculos`
