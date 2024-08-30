@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Ago-2024 às 14:43
+-- Tempo de geração: 30-Ago-2024 às 14:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -170,13 +170,15 @@ ALTER TABLE `departamento`
 -- Índices para tabela `funcionarios`
 --
 ALTER TABLE `funcionarios`
-  ADD PRIMARY KEY (`funcMatricula`);
+  ADD PRIMARY KEY (`funcMatricula`),
+  ADD KEY `funcDepto` (`funcDepto`);
 
 --
 -- Índices para tabela `ordem_de_servico`
 --
 ALTER TABLE `ordem_de_servico`
-  ADD PRIMARY KEY (`OsNum`);
+  ADD PRIMARY KEY (`OsNum`),
+  ADD KEY `OsVeicPlaca` (`OsVeicPlaca`);
 
 --
 -- Índices para tabela `usuarios`
@@ -188,7 +190,32 @@ ALTER TABLE `usuarios`
 -- Índices para tabela `veiculos`
 --
 ALTER TABLE `veiculos`
-  ADD PRIMARY KEY (`veicPlaca`);
+  ADD PRIMARY KEY (`veicPlaca`),
+  ADD KEY `veicCat` (`veicCat`),
+  ADD KEY `veicComb` (`veicComb`);
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`funcDepto`) REFERENCES `departamento` (`DeptoCod`);
+
+--
+-- Limitadores para a tabela `ordem_de_servico`
+--
+ALTER TABLE `ordem_de_servico`
+  ADD CONSTRAINT `ordem_de_servico_ibfk_1` FOREIGN KEY (`OsVeicPlaca`) REFERENCES `veiculos` (`veicPlaca`);
+
+--
+-- Limitadores para a tabela `veiculos`
+--
+ALTER TABLE `veiculos`
+  ADD CONSTRAINT `veiculos_ibfk_1` FOREIGN KEY (`veicCat`) REFERENCES `categoria` (`CatCod`),
+  ADD CONSTRAINT `veiculos_ibfk_2` FOREIGN KEY (`veicComb`) REFERENCES `combustivel` (`CombTipo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
