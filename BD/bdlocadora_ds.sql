@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Ago-2024 às 14:46
+-- Tempo de geração: 06-Set-2024 às 14:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -178,13 +178,16 @@ ALTER TABLE `funcionarios`
 --
 ALTER TABLE `ordem_de_servico`
   ADD PRIMARY KEY (`OsNum`),
-  ADD KEY `OsVeicPlaca` (`OsVeicPlaca`);
+  ADD KEY `OsVeicPlaca` (`OsVeicPlaca`),
+  ADD KEY `OsClienteCPF` (`OsClienteCPF`),
+  ADD KEY `OsFuncMat` (`OsFuncMat`);
 
 --
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`usuarioLogin`);
+  ADD PRIMARY KEY (`usuarioLogin`),
+  ADD KEY `usuarioFuncMat` (`usuarioFuncMat`);
 
 --
 -- Índices para tabela `veiculos`
@@ -208,7 +211,15 @@ ALTER TABLE `funcionarios`
 -- Limitadores para a tabela `ordem_de_servico`
 --
 ALTER TABLE `ordem_de_servico`
-  ADD CONSTRAINT `ordem_de_servico_ibfk_1` FOREIGN KEY (`OsVeicPlaca`) REFERENCES `veiculos` (`veicPlaca`);
+  ADD CONSTRAINT `ordem_de_servico_ibfk_1` FOREIGN KEY (`OsVeicPlaca`) REFERENCES `veiculos` (`veicPlaca`),
+  ADD CONSTRAINT `ordem_de_servico_ibfk_2` FOREIGN KEY (`OsClienteCPF`) REFERENCES `clientes` (`clienteCPF`),
+  ADD CONSTRAINT `ordem_de_servico_ibfk_3` FOREIGN KEY (`OsFuncMat`) REFERENCES `funcionarios` (`funcMatricula`);
+
+--
+-- Limitadores para a tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`usuarioFuncMat`) REFERENCES `funcionarios` (`funcMatricula`);
 
 --
 -- Limitadores para a tabela `veiculos`
