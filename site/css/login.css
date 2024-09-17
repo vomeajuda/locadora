@@ -1,6 +1,8 @@
 body {
     background-color: #2b2b2b;
+    
   }
+  
   
   .login-box {
     background-color: #3d3d3d;
@@ -8,15 +10,23 @@ body {
     max-width: 680px;
     width: 100%;
     
+    
   }
-  .container {
-    max-height: calc(100vh - 56px); 
-     
+  .logo{
+    width: 60%;
+    size: 60%;
   }
+  a{
+    text-decoration: none;
+  }
+
+  
   
   .btn {
     background-color: #ffffff;
     color: #2b2b2b;
+    width: 15rem;
+    height: 2.5rem;
   }
   
   .btn:hover {
