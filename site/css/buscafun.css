@@ -4,17 +4,31 @@ body {
   }
   
   
-  .esq {
+  .dir {
     background-color: #181818;
     color: #ffffff;
     
     
   }
-  .dir{
+  .esq{
     background-color: #444444;
     color: #ffffff;
     
     
+  }
+  .texto1{
+    background-color: #181818;
+    border-bottom-left-radius: 10%;
+    border-top-left-radius: 10%;
+  }
+  .texto2{
+    background-color: #181818;
+    border-bottom-right-radius: 10%;
+    border-top-right-radius: 10%;
+  }
+  .input-group{
+    display: flex;
+    justify-content: center;
   }
   .logo{
     width: 60%;
@@ -92,56 +106,45 @@ body {
     background-color: #d4d4d4;
   }
   .input-group-text{
-    max-width: 30rem;
-    background-color: #cfcfcf;
-    color: #525252;
+    background-color: #181818;
     border-color: red;
   }
   
   .form-control {
-    background-color: #cfcfcf;
+    background-color: #181818;
     border: 5;
-    color: #525252;
-    border-color: red;
-
-  }
-  .form-select {
-    background-color: #cfcfcf;
-    border: 5;
-    color: #525252;
-    border-color: red;
-
-  }
-  .form-select:focus{
-    background-color: #525252;
     color: #cfcfcf;
-    box-shadow: none;
     border-color: red;
+    max-width: 40rem;
+
   }
+
   .form-control:focus{
-    background-color: #cfcfcf;
-    color: #525252;
+    background-color: #181818;
+    color: #cfcfcf;
     box-shadow: none;
     border-color: red;
   }
   
   .form-control::placeholder {
-    color: #525252;
+    color: #cfcfcf;
   }
   
   .form-check-label {
     color: #cfcfcf;
   }
-  .fa-solid{
+  .bi-search{
     color: #cfcfcf;
     size: 100%;
-}
-.fim{
-  background-color: #212121;
-  max-height: 50px;
 }
 .fut{
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
+.fim{
+  background-color: #212121;
+  max-height: 50px;
+}
+
+

@@ -23,9 +23,7 @@ body {
   a:hover{
     text-decoration: underline;
   }
-  .centralizador{
-    height: 85%;
-  }
+  
   .navbar-toggler{
     border: none;
   }
@@ -91,4 +89,9 @@ body {
 .fim{
   background-color: #212121;
   max-height: 50px;
+}
+.fut{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

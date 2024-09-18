@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/veiculo.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <!-- navbar -->
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
@@ -22,13 +22,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="#">Ordens de serviço</a>
+          <a class="nav-link active mx-2" aria-current="page" href="ordemservico.html">Ordens de serviço</a>
         </li>
         <li class="nav-item mx-5">
           <a class="nav-link active mx-2" href="clientes.html">Clientes</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="#">Funcionários</a>
+          <a class="nav-link active mx-2" href="funcionario.html">Funcionários</a>
         </li>
         <li class="nav-item mx-5">
             <a class="nav-link active mx-2" href="#">Buscar veículos</a>
@@ -53,7 +53,7 @@
     <div class="row">
 
         <!-- parte da esquerda -->
-        <div class="esq col-md-4 col-sm-12 border border-danger">
+        <div class="esq col-lg-4 col-md-12 border border-danger">
             <div class="row justify-content-between pt-5 ps-4">
                 <div class="col-sm-10 mb-5">
                     <h2>Faça o cadastro do veículo</h2>
@@ -77,25 +77,24 @@
        </div>
 
 
- <div class="row justify-content-center mt-5">
+       <div class="d-flex justify-content-center my-5">
 
-        <div class="col-sm-6">
-        <button class="down btn btn-light px-5">
+        
+        <button class="down btn btn-light px-3">
             <img class="imgd" src="assets/caret-left-fill.svg" alt="">
         </button>
-        <button class="down btn btn-light ps-5">
+        <button class="down btn btn-light px-5">
             <img class="imgd" src="assets/pencil-square.svg" alt="">
         </button>
-         </div>
-
-         <div class="col-sm-6">
+         
+         
         <button class="down btn btn-light  px-5">
             <img class="imgd" src="assets/trash3.svg" alt="">
         </button>
-        <button class="down btn btn-light ps-5">
+        <button class="down btn btn-light px-3">
             <img class="imgd" src="assets/caret-right-fill.svg" alt="">
         </button>
-       </div>
+       
 </div>
 
            
@@ -103,7 +102,7 @@
         </div>
 
         <!-- parte da direita -->
-        <div class="dir col-md-8 col-sm-12 border-right border-top border-right border-bottom border-danger">
+        <div class="dir col-lg-8 col-md-12 border-right border-top border-right border-bottom border-danger">
             <div class="container d-flex justify-content-center mt-5">
                 <h2>Insira os dados aqui:</h2>
             </div>
@@ -188,13 +187,13 @@
 <!-- footer -->
 
 
-<footer class="bg-dark text-center">
+<footer class="fut bg-dark text-center">
     <!-- Grid container -->
     <div class="container pt-5 p-4 pb-0 justify-content-start">
   
       <a class="p-5" href="#"> Início </a>
       <a class="p-5" href="#"> Sobre nós </a>
-      <a class="p-5" href="#"> Contrate-nos </a>
+      <a class="p-4" href="#"> Contrate-nos </a>
       <!-- Section: Social media -->
       <section class="my-5">
   
@@ -253,7 +252,7 @@
     <!-- Grid container -->
   
     <!-- Copyright -->
-    <div class="fim text-center p-3">
+    <div class="fim text-center p-3 mt-auto">
       © 2020 Copyright: Todos direitos reservados El Primotors
       
     </div>

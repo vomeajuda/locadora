@@ -7,13 +7,13 @@ body {
   .esq {
     background-color: #181818;
     color: #ffffff;
-    height: 100vh;
+   
 
   }
   .dir{
     background-color: #444444;
     color: #ffffff;
-    height: 100vh;
+    
   }
   .logo{
     width: 60%;
@@ -138,4 +138,9 @@ body {
 .fim{
   background-color: #212121;
   max-height: 50px;
+}
+.fut{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
