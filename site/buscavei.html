@@ -2,11 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clientes</title>
+    <title>Busca de funcionários</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/buscavei.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 <!-- navbar -->
@@ -31,7 +31,7 @@
           <a class="nav-link active mx-2" href="funcionario.html">Funcionários</a>
         </li>
         <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="buscacli.html">Buscar clientes</a>
+            <a class="nav-link active mx-2" href="clientes.html"> Clientes </a>
           </li>
       </ul>
       <span class="navbar-text me-3">
@@ -53,31 +53,81 @@
     <div class="row">
 
         <!-- parte da esquerda -->
-        <div class="esq col-lg-4 col-md-12 border border-danger">
+        
+
+          <div class="esq col-md-12 col-lg-8 border-left border-top border-bottom border-danger">
+            <div class="container d-flex justify-content-center mt-5">
+                <div class="input-group input-group-lg mt-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control"  placeholder="Pesquise um veículo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                  </div>
+            </div>
+         <div class="row justify-content-center ">
+            <div class="texto1 col-md-4 col-sm-12 pb-5 my-5 ps-5">
+                <div class="mt-5 text" >
+                    <label for="cpf" class="form-label"><h5> Placa:</h5></label>
+                    <p> FMO-4524 </p>
+                  </div>
+                  
+                  <div class="mt-5" >
+                    <label for="Nome" class="form-label"> <h5>Marca</h5></label>
+                    <p>Volkwagen</p>
+                  </div>
+                  <div class="mt-5" >
+                    <label for="Cidade" class="form-label"><h5>Ano:</h5></label>
+                    
+                    <p> 2022</p>
+                  </div>
+                  <div class="mt-5" >
+                    <label for="Sexo" class="form-label"><h5>Cor:</h5></label>
+                    <p>Azul metálico</p>
+                  </div>
+            </div>
+            <div class="texto2 col-md-3 col-sm-12 pb-5 my-5 pe-5">
+                <div class="mt-5" >
+                    <label for="data" class="form-label"><h5>Combustível:</h5> </label>
+                    <p>Flex</p>
+                  </div>
+                  
+                  <div class="mt-5" >
+                    <label for="end" class="form-label"><h5>Categoria:</h5></label>
+                    
+                    <p>Mini SUV</p>
+                  </div>
+                  <div class="mt-5" >
+                    <label for="status" class="form-label"><h5>Status:</h5></label>
+                   <p>Alocado</p>
+                  </div>
+            </div>
+            
+            </div>
+               
+        </div>
+   
+        <!-- fim da parte da esquerda -->
+
+        <!-- parte da direita -->
+<div class="dir col-lg-4 col-md-12 border border-danger">
             <div class="row justify-content-between pt-5 ps-4">
                 <div class="col-sm-10 mb-5">
-                    <h2>Faça seu cadastro de <br>usuário</h2>
-                </div>
-                <div class="col-sm-2 mb-5"> 
-                    
-                <button class="up btn btn-light p-1 ">
-                    <img id="maisp" src="assets/person-fill-add.svg" alt="">
-                </button>
+                    <h2>Faça a busca de um veículo</h2>
                 </div>
                 
             </div>
 
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
-            Nome: Claudio Ferreira
+            Modelo: T-Cross
         </h3>
        </div>
        <div class="d-flex justify-content-center">
-        <img id="redondo" src="assets/person-circle.svg" alt="">
+        <img id="redondo" src="assets/Group 19.svg" alt="">
        </div>
 
 
- <div class="d-flex justify-content-center my-5">
+    <div class="d-flex justify-content-center my-5">
 
         
         <button class="down btn btn-light px-3">
@@ -95,78 +145,14 @@
             <img class="imgd" src="assets/caret-right-fill.svg" alt="">
         </button>
        
-</div>
+    </div>
 
            
             
         </div>
-
-        <!-- parte da direita -->
-        <div class="dir col-md-12 col-lg-8 border-right border-top border-right border-bottom border-danger">
-            <div class="container d-flex justify-content-center mt-5">
-                <h2>Insira seus dados aqui:</h2>
-            </div>
-         <div class="row justify-content-center ">
-            <div class="col-md-4 col-sm-12">
-                <div class="mt-5" >
-                    <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="###.###.###-##" aria-describedby="emailHelp">
-                  </div>
-                  
-                  <div class="mt-3" >
-                    <label for="Nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" aria-describedby="emailHelp">
-                  </div>
-                  <div class="mt-3" >
-                    <label for="Cidade" class="form-label">Cidade:</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite sua cidade" aria-describedby="emailHelp">
-                  </div>
-                  <div class="mt-3" >
-                    <label for="Sexo" class="form-label">Sexo:</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Escolha</option>
-                        <option value="1">Feminino</option>
-                        <option value="2">Masculino</option>
-                        <option value="3">Outro</option>
-                      </select>
-                  </div>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="mt-5" >
-                    <label for="data" class="form-label">Data de nascimento:</label>
-                    <input type="date" class="form-control" id="data" placeholder="Insira sua data de nascimento" aria-describedby="emailHelp">
-                  </div>
-                  
-                  <div class="mt-3" >
-                    <label for="tel" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" id="tel" placeholder="(##)#####-####" aria-describedby="emailHelp">
-                  </div>
-                  <div class="mt-3" >
-                    <label for="end" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" id="end" placeholder="Digite seu Enderço:" aria-describedby="emailHelp">
-                  </div>
-                  <div class="mt-5" >
-                    <label for="status" class="form-label">Status:</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                        <label class="form-check-label" for="inlineRadio1"> Sim</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                        <label class="form-check-label" for="inlineRadio2">Não</label>
-                      </div>
-                  </div>
-            </div>
-            
-            </div>
-                <div class="container-sm d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
-                    <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</button>
-                
-                 </div>
-        </div>
+        <!-- fim da parte da direita -->
+      
     </div>
-
 
 
    </div>
@@ -189,7 +175,7 @@
       <a class="p-5" href="#"> Início </a>
       <a class="p-5" href="#"> Sobre nós </a>
       <a class="p-4" href="#"> Contrate-nos </a>
-      <!-- Section: Social media -->
+      <!-- midia social -->
       <section class="my-5">
   
         <!-- Facebook -->
@@ -242,17 +228,18 @@
           ><i class="fab fa-github"></i
         ></a>
       </section>
-      <!-- Section: Social media -->
+     
     </div>
-    <!-- Grid container -->
+    
   
     <!-- Copyright -->
-    <div class="fim text-center p-3 mt-auto">
+    <div class="fim text-center mt-auto p-3">
       © 2020 Copyright: Todos direitos reservados El Primotors
       
     </div>
     <!-- Copyright -->
   </footer>
+
 
 
 

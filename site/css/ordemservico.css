@@ -143,8 +143,4 @@ body {
   background-color: #212121;
   font-size: small;
 }
-.fut{
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
+
