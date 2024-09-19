@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+  <!-- cabeçalho com links e imports -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -44,17 +45,17 @@
               <form>
                 <div class="input-group input-group-lg mt-5">
                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                    <input type="text" class="form-control"  placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    <input id="email" type="text" class="form-control"  placeholder="Email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
                   <div class="input-group input-group-lg mt-3">
                     <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                    <input type="password" class="form-control"  placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    <input id="senha" type="password" class="form-control"  placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
                 <div class="form-check mt-3">
                   <input type="checkbox" class="form-check-input mb-3" id="lembrar">
                   <label class="form-check-label" for="lembrar">Lembrar de mim</label>
                 </div>
-                <button type="submit" class="btn btn-dark btn-block rounded border border-danger mt-3 px-3">Entrar</button>
+                <button onclick="login()" type="button"  class="btn btn-dark btn-block rounded border border-danger mt-3 px-3">Entrar</button>
               </form>
             </div>
           </div>
@@ -70,7 +71,7 @@
     <a class="p-5" href="#"> Início </a>
     <a class="p-5" href="#"> Sobre nós </a>
     <a class="p-4" href="#"> Contrate-nos </a>
-    <!-- Section: Social media -->
+   
     <section class="my-5">
 
       <!-- Facebook -->
@@ -123,23 +124,23 @@
         ><i class="fab fa-github"></i
       ></a>
     </section>
-    <!-- Section: Social media -->
+    
   </div>
-  <!-- Grid container -->
+
 
   <!-- Copyright -->
   <div class="fim text-center p-3 mt-auto">
     © 2020 Copyright: Todos direitos reservados El Primotors
     
   </div>
-  <!-- Copyright -->
+ 
 </footer>
 
 
 
 
 
-    
+    <script src="js/login.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

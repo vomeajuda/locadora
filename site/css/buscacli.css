@@ -1,3 +1,5 @@
+/* estilização de containers e texto*/
+
 body {
     background-color: #2b2b2b;
     color: #ffffff;
@@ -21,13 +23,13 @@ body {
   }
   .texto1{
     background-color: #181818;
-    border-bottom-left-radius: 15%;
-    border-top-left-radius: 15%;
+    border-bottom-left-radius: 5%;
+    border-top-left-radius: 5%;
   }
   .texto2{
     background-color: #181818;
-    border-bottom-right-radius: 15%;
-    border-top-right-radius: 15%;
+    border-bottom-right-radius: 5%;
+    border-top-right-radius: 5%;
   }
   .input-group{
     display: flex;
@@ -68,6 +70,7 @@ body {
 
   }
 
+  /* estilização de botao e formularios*/
   .btn-dark {
     background-color: #ffffff;
     color: #2b2b2b;

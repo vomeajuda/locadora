@@ -1,3 +1,4 @@
+/* estilização de containers e textos */
 body {
     background-color: #2b2b2b;
     color: #ffffff;
@@ -70,6 +71,7 @@ body {
    
     
   }
+  /* estilização de botão e formularios */
   .btn-outline-dark-lg{
     background-color: #ffffff;
     color: #2b2b2b;
