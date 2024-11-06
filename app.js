@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const PASS = process.env.DATABASE_PASSWORD;
 
-const rotas = require('./routers/cliente');
+const rotas = require('./routers/clientes');
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
