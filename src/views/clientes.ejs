@@ -9,13 +9,12 @@
     <link rel="stylesheet" href="css/clientes.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-  <% if (data) { %>
-    <% for (var i = 0; i < data.length; i++) { %>
+
 <!-- navbar -->
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="elprimotors.html">
+    <a class="navbar-brand " href="/elprimotors">
       <img src="assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,20 +23,20 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="ordemservico.html">Ordens de serviço</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="veiculo.html">Veículos</a>
+          <a class="nav-link active mx-2" href="/veiculo">Veículos</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="funcionario.html">Funcionários</a>
+          <a class="nav-link active mx-2" href="/funcionario">Funcionários</a>
         </li>
         <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="buscacli.html">Buscar clientes</a>
+            <a class="nav-link active mx-2" href="/buscacli">Buscar clientes</a>
           </li>
       </ul>
       <span class="navbar-text me-3">
-        <a href="login.html">
+        <a href="/login">
           <img src="assets/Frame.svg" alt="">
           Entrar
         </a>
@@ -71,7 +70,7 @@
 
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
-            Nome: <%= data[i].nome %>
+            Nome:
         </h3>
        </div>
        <div class="d-flex justify-content-center">
@@ -90,7 +89,7 @@
         </button>
          
          
-        <a href="/delete/<%= data[i].id %>" class="down btn btn-light  px-5">
+        <a class="down btn btn-light  px-5">
             <img class="imgd" src="assets/trash3.svg" alt="">
         </a>
         <button class="down btn btn-light px-3">
@@ -165,7 +164,7 @@
                 <div class="container-sm d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
                   </form>
-                    <a href="/update/<%= data[i].id %>" type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Atualizar</a>
+                    <a type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Atualizar</a>
                 
                  </div>
         </div>
