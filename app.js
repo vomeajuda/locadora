@@ -12,7 +12,7 @@ const rotas = require('./src/routers/clientes');
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', './src/views');
 
 app.use(morgan('dev'));
 app.use(myConnection(mysql, {
@@ -24,7 +24,9 @@ app.use(myConnection(mysql, {
 }, 'single'));
 app.use(express.urlencoded({extended: false}));
 
-app.use('/', rotas);
+app.get('/', (req, res) => {
+    res.render('login');
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

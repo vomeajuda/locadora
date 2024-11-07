@@ -9,7 +9,4 @@ router.get('/delete/:id', crud.delete);
 
 router.get('/update/:id', crud.edit);
 
-router.post('/update/:id', crud.update);
-
 module.exports = router;
-
