@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const PASS = process.env.DATABASE_PASSWORD;
 
-const rotas = require('./routers/clientes');
+const rotas = require('./src/routers/clientes');
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: PASS,
+    password: '',
     port: '3306',
     database: 'bdlocadora_ds'
 }, 'single'));
