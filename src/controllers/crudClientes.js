@@ -5,9 +5,14 @@ controller.save = (req, res) => {
     const data = req.body;
 
     req.getConnection((err, conn) => {
+
+        if (err) {
+            return res.status(500).json('Erro ao conectar ao banco de dados');
+        }
+
         conn.query('INSERT INTO clientes set ?', [data], (err, cliente) => {
             if (err) {
-                return res.status(500).send('Erro ao conectar ao banco de dados');
+                return res.status(500).json('Erro ao conectar ao banco de dados');
             }
 
             res.redirect('/');
@@ -45,3 +50,5 @@ controller.edit = (req, res) => {
         });
     });
 };
+
+module.exports = controller;
