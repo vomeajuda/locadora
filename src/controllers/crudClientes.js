@@ -1,4 +1,3 @@
-const res = require("express/lib/response");
 const controller = {}; //cria o método do controller
 
 //método para salvar o cliente
@@ -8,7 +7,7 @@ controller.save = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('INSERT INTO clientes set ?', [data], (err, cliente) => {
             if (err) {
-                res.json(err);
+                return res.status(500).send('Erro ao conectar ao banco de dados');
             }
 
             res.redirect('/');
@@ -22,7 +21,7 @@ controller.delete = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('DELETE FROM clientes WHERE id = ?', [id], (err, rows) => {
             if (err) {
-                res.json(err);
+                return res.status(500).send('Erro ao conectar ao banco de dados');
             }
 
             res.redirect('/');
@@ -37,10 +36,10 @@ controller.edit = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('SELECT * FROM clientes WHERE id = ?', [id], (err, cliente) => {
             if (err) {
-                res.json(err);
+                return res.status(500).send('Erro ao conectar ao banco de dados');
             }
             
-            res.render('clientes_edit', {
+            res.render('/', {
                 data: cliente[0]
             });
         });
