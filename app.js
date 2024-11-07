@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const PASS = process.env.DATABASE_PASSWORD;
 
-const rotas = require('./src/routers/clientes');
+const rotas = require('./src/routers/rotas');
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
@@ -24,11 +24,13 @@ app.use(myConnection(mysql, {
 }, 'single'));
 app.use(express.urlencoded({extended: false}));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
-    res.render('login');
+    res.render('clientes');
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/rotas', rotas);
 
 app.listen(app.get('port'), () => {
     console.log('Server on port 3000');
