@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: PASS,
     port: '3306',
     database: 'bdlocadora_ds'
 }, 'single'));
