@@ -6,7 +6,7 @@ const paginas = require('../controllers/crudPaginas');
 
 router.get('/', paginas.list);
 
-router.get('/clientes', paginas.listClientes);
+router.get('/clientes', clientes.listClientes);
 
 router.get('/buscacli', paginas.listBuscacli);
 
@@ -31,5 +31,9 @@ router.post('/clientes/addClientes', clientes.save);
 router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
 
 router.get('/clientes/updateClientes', clientes.edit);
+
+router.get('/clientes/next', clientes.next);
+
+router.get('/clientes/prev', clientes.prev);
 
 module.exports = router;

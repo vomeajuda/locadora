@@ -69,7 +69,7 @@
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
           
-            Nome: <%= data[data.length - 1].clienteNome %>
+          Nome: <%= clienteAtual.clienteNome %>
           
          
         </h3>
@@ -82,22 +82,21 @@
  <div class="d-flex justify-content-center my-5">
 
         
-        <button class="down btn btn-light px-3">
+        <a href="/clientes/prev?clienteIndex=<%= clienteIndex %>" class="down btn btn-light px-3">
             <img class="imgd" src="assets/caret-left-fill.svg" alt="">
-        </button>
+        </a>
         <a href="/clientes/updateClientes" class="down btn btn-light px-5">
             <img class="imgd" src="assets/pencil-square.svg" alt="">
         </a>
          
          
 
-        <a href="/clientes/deleteClientes/<%= data[data.length - 1].clienteCPF %>" class="down btn btn-light  px-5">
-
+        <a href="/clientes/deleteClientes/<%= clienteAtual.clienteCPF %>" class="down btn btn-light  px-5">
             <img class="imgd" src="assets/trash3.svg" alt="">
         </a>
-        <button class="down btn btn-light px-3">
+        <a href="/clientes/next?clienteIndex=<%= clienteIndex %>" class="down btn btn-light px-3">
             <img class="imgd" src="assets/caret-right-fill.svg" alt="">
-        </button>
+        </a>
     
 </div> 
 

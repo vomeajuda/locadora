@@ -4,24 +4,6 @@ exports.list = (req, res) => {
     res.render('elprimotors');
 };
 
-exports.listClientes = (req, res) => {
-    req.getConnection((err, conn) => {
-        if (err) {
-            return res.status(500).send('Erro ao conectar ao banco de dados');
-        }
-
-        conn.query('SELECT * FROM clientes', (err, clientes) => {
-            if (err) {
-                return res.status(500).send('Erro ao consultar clientes');
-            }
-
-            res.render('clientes', {
-                data: clientes
-            });
-        });
-    });
-};
-
 exports.listBuscacli = (req, res) => {
     res.render('buscacli');
 };
