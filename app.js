@@ -26,59 +26,27 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/clientes', (req, res) => {
-    req.getConnection((err, conn) => {
-      conn.query('SELECT * FROM clientes', (err, clientes) => {
-        if (err) {
-          return res.status(500).send('Erro ao conectar ao banco de dados');
-        }
-        
-        res.render('clientes', {
-          data: clientes
-        });
-      });
-    });
-  });
+app.get('/', rotas);
 
-app.get('/', (req, res) => {
-    res.render('elprimotors');
-});
+app.get('/clientes', rotas);
 
-app.get('/buscacli', (req, res) => {
-    res.render('buscacli');
-});
+app.get('/buscacli', rotas);
 
-app.get('/buscafun', (req, res) => {
-    res.render('buscafun');
-});
+app.get('/buscafun', rotas);
 
-app.get('/buscaord', (req, res) => {
-    res.render('buscaord');
-});
+app.get('/buscaord', rotas);
 
-app.get('/buscavei', (req, res) => {
-    res.render('buscavei');
-});
+app.get('/buscavei', rotas);
 
-app.get('/elprimotors', (req, res) => {
-    res.render('elprimotors');
-});
+app.get('/elprimotors', rotas);
 
-app.get('/funcionario', (req, res) => {
-    res.render('funcionario');
-});
+app.get('/funcionario', rotas);
 
-app.get('/login', (req, res) => {
-    res.render('login');
-});
+app.get('/login', rotas);
 
-app.get('/ordemservico', (req, res) => {
-    res.render('ordemservico');
-});
+app.get('/ordemservico', rotas);
 
-app.get('/veiculo', (req, res) => {
-    res.render('veiculo');
-});
+app.get('/veiculo', rotas);
 
 app.listen(app.get('port'), () => {
     console.log('Server on port 3000');

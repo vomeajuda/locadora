@@ -2,24 +2,35 @@ const express = require('express');
 const router = express.Router();
 
 const clientes = require('../controllers/crudClientes');
+const paginas = require('../controllers/crudPaginas');
+const usuarios = require('../controllers/crudFunc');
 
+router.get('/', paginas.list);
 
-router.post('/add/:data', clientes.save);
+router.get('/clientes', paginas.listClientes);
 
-router.get('/delete/:id', clientes.delete);
+router.get('/buscacli', paginas.listBuscacli);
 
-router.get('/update/:id', clientes.edit);
+router.get('/buscafun', paginas.listBuscafun);
 
-const funcionarios = require('../controllers/crudFunc')
+router.get('/buscaord', paginas.listBuscaord);
 
-router.post('/add/:data', funcionarios.save);
+router.get('/buscavei', paginas.listBuscavei);
 
-router.get('/delete/:id', funcionarios.delete);
+router.get('/elprimotors', paginas.listElprimotors);
 
-router.get('/update/:id', funcionarios.edit);
+router.get('/funcionario', paginas.listFuncionario);
 
-module.exports = {
-    router,
-    clientes,
-    funcionarios
-  };
+router.get('/login', paginas.listLogin);
+
+router.get('/ordemservico', paginas.listOrdemServico);
+
+router.get('/veiculo', paginas.listVeiculo);
+
+router.post('/clientes/addClientes/:data', clientes.save);
+
+router.get('/deleteClientes/:id', clientes.delete);
+
+router.get('/updateClientes/:id', clientes.edit);
+
+module.exports = router;
