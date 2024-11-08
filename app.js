@@ -27,10 +27,48 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
+    res.render('elprimotors');
+});
+
+app.get('/buscacli', (req, res) => {
+    res.render('buscacli');
+});
+
+app.get('/buscafun', (req, res) => {
+    res.render('buscafun');
+});
+
+app.get('/buscaord', (req, res) => {
+    res.render('buscaord');
+});
+
+app.get('/buscavei', (req, res) => {
+    res.render('buscavei');
+});
+
+app.get('/clientes', (req, res) => {
     res.render('clientes');
 });
 
-app.use('/rotas', rotas);
+app.get('/elprimotors', (req, res) => {
+    res.render('elprimotors');
+});
+
+app.get('/funcionario', (req, res) => {
+    res.render('funcionario');
+});
+
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.get('/ordemservico', (req, res) => {
+    res.render('ordemservico');
+});
+
+app.get('/veiculo', (req, res) => {
+    res.render('veiculo');
+});
 
 app.listen(app.get('port'), () => {
     console.log('Server on port 3000');
