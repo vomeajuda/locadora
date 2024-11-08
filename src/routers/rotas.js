@@ -9,4 +9,12 @@ router.get('/delete/:id', clientes.delete);
 
 router.get('/update/:id', clientes.edit);
 
+const funcionarios = require('../controllers/crudFunc')
+
+router.post('/add/:data', funcionarios.save);
+
+router.get('/delete/:id', funcionarios.delete);
+
+router.get('/update/:id', funcionarios.edit);
+
 module.exports = router;

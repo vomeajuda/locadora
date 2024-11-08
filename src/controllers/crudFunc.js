@@ -1,6 +1,6 @@
 const controller = {}; //cria o método do controller
 
-//método para salvar o cliente
+//método para salvar os funcionarios
 controller.save = (req, res) => {
     const data = req.body;
 
@@ -10,7 +10,7 @@ controller.save = (req, res) => {
             return res.status(500).json('Erro ao conectar ao banco de dados');
         }
 
-        conn.query('INSERT INTO clientes set ?', [data], (err, cliente) => {
+        conn.query('INSERT INTO funcionarios set ?', [data], (err, funcionarios) => {
             if (err) {
                 return res.status(500).json('Erro ao conectar ao banco de dados');
             }
@@ -19,26 +19,12 @@ controller.save = (req, res) => {
         });
     });
 };
-//método para listar os clientes
-controller.list = (req, res) => {
-    req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM clientes', (err, cliente) => {
-            if (err) {
-                res.json(err);
-            }
-
-            res.render('clientes', {
-                data: cliente
-            });
-        });
-    });
-};
-//método para deletar o cliente
+//método para deletar os funcionarios
 controller.delete = (req, res) => {
     const { id } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('DELETE FROM clientes WHERE id = ?', [id], (err, rows) => {
+        conn.query('DELETE FROM funcionarios WHERE id = ?', [id], (err, rows) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
@@ -48,18 +34,18 @@ controller.delete = (req, res) => {
     });
 };
 
-//método para editar o cliente
+//método para editar os funcionarios
 controller.edit = (req, res) => {
     const { id } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM clientes WHERE id = ?', [id], (err, cliente) => {
+        conn.query('SELECT * FROM funcionarios WHERE id = ?', [id], (err, funcionarios) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
             
             res.render('/', {
-                data: cliente[0]
+                data: funcionarios[0]
             });
         });
     });
