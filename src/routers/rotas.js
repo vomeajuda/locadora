@@ -28,8 +28,8 @@ router.get('/veiculo', paginas.listVeiculo);
 
 router.post('/clientes/addClientes', clientes.save);
 
-router.get('/clientes/deleteClientes', clientes.delete);
+router.delete('/clientes/deleteClientes', clientes.delete);
 
-router.get('/clientes/updateClientes', clientes.edit);
+router.patch('/clientes/updateClientes', clientes.edit);
 
 module.exports = router;

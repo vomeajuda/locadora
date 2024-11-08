@@ -32,7 +32,7 @@ controller.list = (req, res) => {
         conn.query('SELECT * FROM clientes', (err, cliente) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
-            }
+            } 
 
             res.render('clientes', {
                 data: cliente
