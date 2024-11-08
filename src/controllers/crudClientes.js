@@ -2,12 +2,23 @@ const controller = {}; //cria o método do controller
 
 //método para salvar o cliente
 controller.save = (req, res) => {
-    const data = req.body;
+    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade} = req.body;
+    
+    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade) {
+        return res.status(400).send('Todos os campos são obrigatórios');
+    }
+
+    const query = `INSERT INTO clientes (clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
     req.getConnection((err, conn) => {
-        conn.query('INSERT INTO clientes set ?', [data], (err, cliente) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(query, [clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH], (err, result) => {
             if (err) {
-                return res.status(500).send('Erro ao conectar ao banco de dados');
+                return res.status(500).send('Erro ao salvar o cliente');
             }
 
             res.redirect('/');

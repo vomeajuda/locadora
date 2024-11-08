@@ -26,6 +26,8 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(rotas);
+
 app.get('/', rotas);
 
 app.get('/clientes', rotas);

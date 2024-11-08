@@ -3,7 +3,6 @@ const router = express.Router();
 
 const clientes = require('../controllers/crudClientes');
 const paginas = require('../controllers/crudPaginas');
-const usuarios = require('../controllers/crudFunc');
 
 router.get('/', paginas.list);
 
@@ -27,10 +26,10 @@ router.get('/ordemservico', paginas.listOrdemServico);
 
 router.get('/veiculo', paginas.listVeiculo);
 
-router.post('/clientes/addClientes/:data', clientes.save);
+router.post('/clientes/addClientes', clientes.save);
 
-router.get('/deleteClientes/:id', clientes.delete);
+router.get('/clientes/deleteClientes', clientes.delete);
 
-router.get('/updateClientes/:id', clientes.edit);
+router.get('/clientes/updateClientes', clientes.edit);
 
 module.exports = router;
