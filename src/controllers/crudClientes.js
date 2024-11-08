@@ -5,26 +5,22 @@ controller.save = (req, res) => {
     const data = req.body;
 
     req.getConnection((err, conn) => {
-
-        if (err) {
-            return res.status(500).json('Erro ao conectar ao banco de dados');
-        }
-
         conn.query('INSERT INTO clientes set ?', [data], (err, cliente) => {
             if (err) {
-                return res.status(500).json('Erro ao conectar ao banco de dados');
+                return res.status(500).send('Erro ao conectar ao banco de dados');
             }
 
             res.redirect('/');
         });
     });
 };
+
 //método para listar os clientes
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
         conn.query('SELECT * FROM clientes', (err, cliente) => {
             if (err) {
-                res.json(err);
+                return res.status(500).send('Erro ao conectar ao banco de dados');
             }
 
             res.render('clientes', {
@@ -35,10 +31,10 @@ controller.list = (req, res) => {
 };
 //método para deletar o cliente
 controller.delete = (req, res) => {
-    const { id } = req.params;
+    const { clienteCPF } = req.params;
 
     req.getConnection((err, conn) => {
-        conn.query('DELETE FROM clientes WHERE id = ?', [id], (err, rows) => {
+        conn.query('DELETE FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, rows) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
@@ -50,19 +46,19 @@ controller.delete = (req, res) => {
 
 //método para editar o cliente
 controller.edit = (req, res) => {
-    const { id } = req.params;
-
+    const { clienteCPF } = req.params;
+  
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM clientes WHERE id = ?', [id], (err, cliente) => {
-            if (err) {
-                return res.status(500).send('Erro ao conectar ao banco de dados');
-            }
-            
-            res.render('/', {
-                data: cliente[0]
-            });
+      conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, cliente) => {
+        if (err) {
+          return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+        
+        res.render('clientes', {
+          data: cliente[0]
         });
+      });
     });
-};
+  };
 
 module.exports = controller;

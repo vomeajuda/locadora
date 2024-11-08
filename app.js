@@ -26,6 +26,20 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/clientes', (req, res) => {
+    req.getConnection((err, conn) => {
+      conn.query('SELECT * FROM clientes', (err, clientes) => {
+        if (err) {
+          return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+        
+        res.render('clientes', {
+          data: clientes
+        });
+      });
+    });
+  });
+
 app.get('/', (req, res) => {
     res.render('elprimotors');
 });
@@ -44,10 +58,6 @@ app.get('/buscaord', (req, res) => {
 
 app.get('/buscavei', (req, res) => {
     res.render('buscavei');
-});
-
-app.get('/clientes', (req, res) => {
-    res.render('clientes');
 });
 
 app.get('/elprimotors', (req, res) => {
