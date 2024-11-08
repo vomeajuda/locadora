@@ -8,7 +8,7 @@ const usuario = require('../controllers/crudUsuario');
 
 router.get('/', paginas.list);
 
-router.get('/clientes', paginas.listClientes);
+router.get('/clientes', clientes.listClientes);
 
 router.get('/buscacli', paginas.listBuscacli);
 
@@ -37,5 +37,9 @@ router.post('/confLogin', login.logar);
 router.post('/usuarios/addUsuario', usuario.save);
 
 
+
+router.get('/clientes/next', clientes.next);
+
+router.get('/clientes/prev', clientes.prev);
 
 module.exports = router;
