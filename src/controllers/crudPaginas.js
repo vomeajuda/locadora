@@ -57,3 +57,7 @@ exports.listOrdemServico = (req, res) => {
 exports.listVeiculo = (req, res) => {
     res.render('veiculo');
 }
+
+exports.listCadastro = (req, res) => {
+    res.render('cadastro');
+}

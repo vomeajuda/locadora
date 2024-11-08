@@ -3,6 +3,8 @@ const router = express.Router();
 
 const clientes = require('../controllers/crudClientes');
 const paginas = require('../controllers/crudPaginas');
+const login = require('../controllers/crudLogin');
+const usuario = require('../controllers/crudUsuario');
 
 router.get('/', paginas.list);
 
@@ -26,10 +28,14 @@ router.get('/ordemservico', paginas.listOrdemServico);
 
 router.get('/veiculo', paginas.listVeiculo);
 
+router.get('/cadastro', paginas.listCadastro);
+
 router.post('/clientes/addClientes', clientes.save);
 
-router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
+router.post('/confLogin', login.logar);
 
-router.get('/clientes/updateClientes', clientes.edit);
+router.post('/usuarios/addUsuario', usuario.save);
+
+
 
 module.exports = router;

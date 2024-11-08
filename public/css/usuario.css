@@ -1,0 +1,149 @@
+/* estilização de containers e textos */
+body {
+    background-color: #2b2b2b;
+    color: #ffffff;
+  }
+  
+  
+  .esq {
+    background-color: #181818;
+    color: #ffffff;
+    
+    
+  }
+  .dir{
+    background-color: #444444;
+    color: #ffffff;
+    
+    
+  }
+  .logo{
+    width: 60%;
+    size: 60%;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  
+  .navbar-toggler{
+    border: none;
+  }
+  .up{
+    
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background-color: #181818;
+  }
+
+  .down{
+    height: 2.5rem;
+    background-color: #181818;
+    border: none;
+  }
+  .imgd{
+
+    min-width: 100%;
+    min-height: 100%;
+
+  }
+
+  .btn-dark {
+    background-color: #ffffff;
+    color: #2b2b2b;
+    width: 6rem;
+    height: 2.5rem;
+    
+  }
+  
+  #maisp{
+    width: 2rem;
+    height: 2rem;
+    
+  }
+
+  #redondo{
+    width: 17rem;
+    height: 17rem;
+   
+    
+  }
+  /* estilização de botão e formularios */
+  .btn-outline-dark-lg{
+    background-color: #ffffff;
+    color: #2b2b2b;
+    width: 14rem;
+    height: 2.5rem;
+  }
+  .btn-link{
+    
+    background-color: #d4d4d4;
+  }
+  .btn-link:hover{
+    background-color: #2b2b2b;
+  }
+  
+  .btn-dark:hover {
+    background-color: #d4d4d4;
+  }
+  .btn-outline-dark-lg:hover{
+    background-color: #d4d4d4;
+  }
+  .input-group-text{
+    max-width: 30rem;
+    background-color: #cfcfcf;
+    color: #525252;
+    border-color: red;
+  }
+  
+  .form-control {
+    background-color: #cfcfcf;
+    border: 5;
+    color: #525252;
+    border-color: red;
+
+  }
+  .form-select {
+    background-color: #cfcfcf;
+    border: 5;
+    color: #525252;
+    border-color: red;
+
+  }
+  .form-select:focus{
+    background-color: #525252;
+    color: #cfcfcf;
+    box-shadow: none;
+    border-color: red;
+  }
+  .form-control:focus{
+    background-color: #cfcfcf;
+    color: #525252;
+    box-shadow: none;
+    border-color: red;
+  }
+  
+  .form-control::placeholder {
+    color: #525252;
+  }
+  
+  .form-check-label {
+    color: #cfcfcf;
+  }
+  .fa-solid{
+    color: #cfcfcf;
+    size: 100%;
+}
+.fim{
+  background-color: #212121;
+  max-height: 50px;
+}
+.fut{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
