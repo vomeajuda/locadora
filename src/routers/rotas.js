@@ -3,7 +3,7 @@ const router = express.Router();
 
 const clientes = require('../controllers/crudClientes');
 
-router.post('/add', clientes.save);
+router.post('/add/:data', clientes.save);
 
 router.get('/delete/:id', clientes.delete);
 

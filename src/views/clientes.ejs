@@ -1,5 +1,5 @@
 <html lang="en"></html>
-<head><!-- cabeçalho com links e imports -->
+<thead><!-- cabeçalho com links e imports -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clientes</title>
@@ -7,10 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/clientes.css">
-</head>
-<body class="d-flex flex-column min-vh-100">
-  <% if (data) { %>
-    <% for (var i = 0; i < data.length; i++) { %>
+</thead>
+<tbody class="d-flex flex-column min-vh-100">
+  
 <!-- navbar -->
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
@@ -62,16 +61,16 @@
                 </div>
                 <div class="col-sm-2 mb-5"> 
                     
-                <button class="up btn btn-light p-1 ">
-                    <img id="maisp" src="assets/person-fill-add.svg" alt="">
-                </button>
                 </div>
                 
             </div>
 
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
-            Nome: <%= data[i].nome %>
+          
+          <tr>
+            <td>Nome: </td>
+          </tr>
         </h3>
        </div>
        <div class="d-flex justify-content-center">
@@ -90,7 +89,7 @@
         </button>
          
          
-        <a href="/delete/<%= data[i].id %>" class="down btn btn-light  px-5">
+        <a href="" class="down btn btn-light  px-5">
             <img class="imgd" src="assets/trash3.svg" alt="">
         </a>
         <button class="down btn btn-light px-3">
@@ -112,16 +111,16 @@
             <div class="col-md-4 col-sm-12">
                 <div class="mt-5" >
                     <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" name="cpf" class="form-control" id="cpf" placeholder="###.###.###-##" aria-describedby="emailHelp">
+                    <input type="text" name="clienteCPF" class="form-control" id="cpf" placeholder="###.###.###-##" aria-describedby="emailHelp">
                   </div>
                   
                   <div class="mt-3" >
-                    <label for="Nome" name="nome" class="form-label">Nome:</label>
+                    <label for="Nome" name="clienteNome" class="form-label">Nome:</label>
                     <input type="text" class="form-control" id="nome" placeholder="Digite seu nome" aria-describedby="emailHelp">
                   </div>
                   <div class="mt-3" >
                     <label for="Cidade" class="form-label">Cidade:</label>
-                    <input type="text" name="endereco" class="form-control" id="nome" placeholder="Digite sua cidade" aria-describedby="emailHelp">
+                    <input type="text" name="clienteEnde" class="form-control" id="nome" placeholder="Digite sua cidade" aria-describedby="emailHelp">
                   </div>
                   <div class="mt-3" >
                     <label for="Sexo" class="form-label">Sexo:</label>
@@ -134,19 +133,20 @@
                   </div>
             </div>
             <div class="col-md-4 col-sm-12">
+              <form action="/clientes/update/" method="get">
               <form action="/add" method="post">
                 <div class="mt-5" >
                     <label for="data" class="form-label">Data de nascimento:</label>
-                    <input type="date" class="form-control" id="data" placeholder="Insira sua data de nascimento" aria-describedby="emailHelp">
+                    <input type="date" name="clienteDataNasc" class="form-control" id="data" placeholder="Insira sua data de nascimento" aria-describedby="emailHelp">
                   </div>
                   
                   <div class="mt-3" >
                     <label for="tel" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" id="tel" placeholder="(##)#####-####" aria-describedby="emailHelp">
+                    <input type="text" name="clienteTel" class="form-control" id="tel" placeholder="(##)#####-####" aria-describedby="emailHelp">
                   </div>
                   <div class="mt-3" >
-                    <label for="end" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" id="end" placeholder="Digite seu Enderço:" aria-describedby="emailHelp">
+                    <label for="end" class="form-label">CNH:</label>
+                    <input type="text" name="clienteCNH" class="form-control" id="end" placeholder="Digite sua CNH:" aria-describedby="emailHelp">
                   </div>
                   <div class="mt-5" >
                     <label for="status" class="form-label">Status:</label>
@@ -163,10 +163,10 @@
             
             </div>
                 <div class="container-sm d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
+                    <a href="" type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</a>
                   </form>
-                    <a href="/update/<%= data[i].id %>" type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Atualizar</a>
-                
+                    <a href="" type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Atualizar</a>
+                  </form>
                  </div>
         </div>
     </div>
@@ -263,5 +263,5 @@
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+</tbody>
 </html>
