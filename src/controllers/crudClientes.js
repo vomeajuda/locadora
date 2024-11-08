@@ -21,7 +21,7 @@ controller.save = (req, res) => {
                 return res.status(500).send('Erro ao salvar o cliente');
             }
 
-            res.redirect('/');
+            res.redirect('/clientes');
         });
     });
 };
@@ -112,7 +112,7 @@ controller.delete = (req, res) => {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
 
-            res.redirect('/');
+            res.redirect('/clientes');
         });
     });
 };
