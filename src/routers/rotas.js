@@ -28,7 +28,7 @@ router.get('/veiculo', paginas.listVeiculo);
 
 router.post('/clientes/addClientes', clientes.save);
 
-router.get('/clientes/deleteClientes', clientes.delete);
+router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
 
 router.get('/clientes/updateClientes', clientes.edit);
 
