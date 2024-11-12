@@ -33,10 +33,6 @@ exports.listOrdemServico = (req, res) => {
     res.render('ordemservico');
 }
 
-exports.listVeiculo = (req, res) => {
-    res.render('veiculo');
-}
-
 exports.listCadastro = (req, res) => {
     res.render('cadastro');
 }
