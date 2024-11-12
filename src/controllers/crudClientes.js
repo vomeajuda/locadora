@@ -2,21 +2,21 @@ const controller = {}; //cria o método do controller
 
 //método para salvar o cliente
 controller.save = (req, res) => {
-    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade} = req.body;
+    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat} = req.body;
     
-    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade) {
+    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
-    const query = `INSERT INTO clientes (clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO clientes (clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        conn.query(query, [clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH], (err, result) => {
+        conn.query(query, [clienteCPF, clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat], (err, result) => {
             if (err) {
                 return res.status(500).send('Erro ao salvar o cliente');
             }
@@ -48,7 +48,8 @@ controller.listClientes = (req, res) => {
                 data: clientes,  // Passa todos os clientes para o template
                 clienteAtual: cliente,
                 clienteIndex: clienteIndex,
-        
+                isEdit: false
+                
             });
         });
     });
@@ -118,20 +119,56 @@ controller.delete = (req, res) => {
 };
 
 //método para editar o cliente
-controller.edit = (req, res) => {
-    const { clienteCPF } = req.params;
-  
-    req.getConnection((err, conn) => {
-      conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, cliente) => {
-        if (err) {
-          return res.status(500).send('Erro ao conectar ao banco de dados');
-        }
-        
-        res.render('clientes', {
-          data: cliente[0]
-        });
-      });
-    });
-  };
+controller.update = (req, res) => {
+    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade } = req.body;
+    
+    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade) {
+        return res.status(400).send('Todos os campos são obrigatórios');
+    }
 
+    const query = `UPDATE clientes 
+                   SET clienteNome = ?, clienteEnde = ?, clienteTel = ?, clienteCidade = ?, clienteDataNasc = ?, clienteCNH = ?
+                   WHERE clienteCPF = ?`;
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(query, [clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCPF], (err, result) => {
+            if (err) {
+                return res.status(500).send('Erro ao atualizar o cliente');
+            }
+
+            res.redirect('/clientes');
+        });
+    });
+};
+
+
+  controller.edit = (req, res) => { 
+    
+      const { clienteCPF } = req.params;
+     
+  
+      req.getConnection((err, conn) => {
+        conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, clientes) => {
+            if (err) {
+                return res.status(500).send('Erro ao conectar ao banco de dados');
+            }
+
+            // Verifica se o cliente foi encontrado
+            if (clientes.length === 0) {
+                return res.status(404).send('Cliente não encontrado');
+            }
+            
+            res.render('clientes', {
+                clienteAtual: clientes[0],
+                isEdit: true,
+                clienteIndex: req.query.clienteIndex || 0
+            });
+        });
+    });
+      
+  }
 module.exports = controller;
