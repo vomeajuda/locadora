@@ -36,7 +36,7 @@ router.post('/confLogin', login.logar);
 
 router.post('/usuarios/addUsuario', usuario.save);
 
-
+router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
 
 router.get('/clientes/next', clientes.next);
 
