@@ -42,5 +42,4 @@ router.get('/clientes/next', clientes.next);
 
 router.get('/clientes/prev', clientes.prev);
 
-//a
 module.exports = router;
