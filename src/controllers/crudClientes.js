@@ -120,14 +120,14 @@ controller.delete = (req, res) => {
 
 //método para editar o cliente
 controller.update = (req, res) => {
-    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade } = req.body;
+    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat } = req.body;
     
-    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade) {
+    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
     const query = `UPDATE clientes 
-                   SET clienteNome = ?, clienteEnde = ?, clienteTel = ?, clienteCidade = ?, clienteDataNasc = ?, clienteCNH = ?
+                   SET clienteNome = ?, clienteEnde = ?, clienteTel = ?, clienteCidade = ?, clienteDataNasc = ?, clienteCNH = ?, clienteCNHCat = ?
                    WHERE clienteCPF = ?`;
 
     req.getConnection((err, conn) => {
@@ -135,7 +135,7 @@ controller.update = (req, res) => {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        conn.query(query, [clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCPF], (err, result) => {
+        conn.query(query, [clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat, clienteCPF], (err, result) => {
             if (err) {
                 return res.status(500).send('Erro ao atualizar o cliente');
             }
