@@ -5,6 +5,7 @@ const clientes = require('../controllers/crudClientes');
 const paginas = require('../controllers/crudPaginas');
 const login = require('../controllers/crudLogin');
 const usuario = require('../controllers/crudUsuario');
+const funcionarios = require('../controllers/crudFunc');
 
 router.get('/', paginas.list);
 
@@ -19,8 +20,6 @@ router.get('/buscaord', paginas.listBuscaord);
 router.get('/buscavei', paginas.listBuscavei);
 
 router.get('/elprimotors', paginas.listElprimotors);
-
-router.get('/funcionario', paginas.listFuncionario);
 
 router.get('/login', paginas.listLogin);
 
@@ -41,5 +40,15 @@ router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
 router.get('/clientes/next', clientes.next);
 
 router.get('/clientes/prev', clientes.prev);
+
+router.post('/funcionario/addFunc', funcionarios.save);
+
+router.get('/funcionario', funcionarios.listFuncionario);
+
+router.get('/funcionario/deleteFunc/:funcMatricula', funcionarios.deleteFunc);
+
+router.get('/funcionario/next', funcionarios.nextFunc);
+
+router.get('/funcionario/prev', funcionarios.prevFunc);
 
 module.exports = router;

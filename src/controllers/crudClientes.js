@@ -48,7 +48,7 @@ controller.listClientes = (req, res) => {
                 data: clientes,  // Passa todos os clientes para o template
                 clienteAtual: cliente,
                 clienteIndex: clienteIndex,
-                totalClientes: clientes.length // Passa o número total de clientes
+        
             });
         });
     });

@@ -160,15 +160,8 @@ INSERT INTO `funcionarios` (`funcMatricula`, `funcNome`, `funcDepto`, `funcSalar
 (1016, 'Wendell Navarro Perez', 3, 1212.00, '2004-04-15', 2, 'M', 1),
 (1017, 'Rodolfo Rodrigues', 1, 8500.00, '2022-09-10', 2, 'M', 1);
 
---
--- Acionadores `funcionarios`
---
-DELIMITER $$
-CREATE TRIGGER `TR_ADD_usuario` AFTER INSERT ON `funcionarios` FOR EACH ROW BEGIN
-INSERT INTO `usuarios` (`usuarioLogin`,`usuarioSenha`,`usuarioFuncMat`,`usuarioSetor`,`usuarioStatus`) VALUES (NEW.funcMatricula,NEW.funcAdmissao,NEW.funcMatricula,NEW.funcDepto,NEW.funcAtivo);
-END
-$$
-DELIMITER ;
+
+
 
 -- --------------------------------------------------------
 

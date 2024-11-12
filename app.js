@@ -52,6 +52,8 @@ app.get('/veiculo', rotas);
 
 app.get('/cadastro', rotas);
 
+
+
 app.listen(app.get('port'), () => {
     console.log('Server on port 3000');
 })
