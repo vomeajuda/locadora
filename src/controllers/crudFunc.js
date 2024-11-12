@@ -35,7 +35,7 @@ controller.listFunc = (req, res) => {
         }
 
         // Consulta todos os funcionarios no banco de dados
-        conn.query('SELECT * FROM funcionarios', (err, funcionarioss) => {
+        conn.query('SELECT * FROM funcionarios', (err, funcionarios) => {
             if (err) {
                 return res.status(500).send('Erro ao consultar os funcionarios');
             }
