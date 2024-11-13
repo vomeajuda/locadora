@@ -120,9 +120,9 @@ controller.delete = (req, res) => {
 
 //método para editar o cliente
 controller.update = (req, res) => {
-    const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat } = req.body;
+    const { clienteCPFaux, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat } = req.body;
     
-    if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
+    if (!clienteCPFaux || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
@@ -133,7 +133,7 @@ controller.update = (req, res) => {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        conn.query(query, [clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat, clienteCPF], (err, result) => {
+        conn.query(query, [clienteNome, clienteEnde, clienteTel, clienteCidade, clienteDataNasc, clienteCNH, clienteCNHCat, clienteCPFaux], (err, result) => {
             if (err) {
                 return res.status(500).send('Erro ao atualizar o cliente');
             }
