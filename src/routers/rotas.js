@@ -56,6 +56,10 @@ router.get('/funcionario/next', funcionarios.nextFunc);
 
 router.get('/funcionario/prev', funcionarios.prevFunc);
 
+router.get('/funcionario/editFunc/:funcMatricula', funcionarios.editFunc);
+
+router.post('/funcionario/updateFunc', funcionarios.updateFunc);
+
 
 router.post('/veiculo/addVeiculo', veiculos.saveVeic);
 

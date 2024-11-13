@@ -48,7 +48,7 @@ controller.listFuncionario = (req, res) => {
                 data: funcionarios,  // Passa todos os funcionarios para o template
                 funcAtual: funcionario,
                 funcIndex: funcIndex,
-        
+                isEdit: false
             });
         });
     });
@@ -120,21 +120,56 @@ controller.deleteFunc = (req, res) => {
     });
 };
 
-//método para editar o func
-controller.edit = (req, res) => {
+
+controller.updateFunc = (req, res) => {
+    const { funcMatriculaAux, funcNome, funcDepto, funcSalario, funcAdmissao, funcFilho, funcSexo, funcAtivo } = req.body;
+    
+    if (!funcMatriculaAux || !funcNome || !funcDepto || !funcAdmissao || !funcSalario || !funcFilho || !funcSexo || !funcAtivo) {
+        return res.status(400).send('Todos os campos são obrigatórios');
+    }
+
+    const query = `UPDATE funcionarios SET funcNome = ?, funcDepto = ?, funcSalario = ?, funcSexo = ?, funcAdmissao = ?, funcFilho = ?, funcAtivo = ? WHERE funcMatricula = ?`;
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(query, [funcNome, funcDepto, funcSalario, funcSexo, funcAdmissao, funcFilho, funcAtivo, funcMatriculaAux], (err, result) => {
+            if (err) {
+                return res.status(500).send('Erro ao atualizar o cliente');
+            }
+
+            res.redirect('/funcionario');
+        });
+    });
+};
+
+
+controller.editFunc = (req, res) => { 
+    
     const { funcMatricula } = req.params;
-  
+   
+
     req.getConnection((err, conn) => {
       conn.query('SELECT * FROM funcionarios WHERE funcMatricula = ?', [funcMatricula], (err, funcionarios) => {
-        if (err) {
-          return res.status(500).send('Erro ao conectar ao banco de dados');
-        }
-        
-        res.render('funcionario', {
-          data: funcionarios[0]
-        });
+          if (err) {
+              return res.status(500).send('Erro ao conectar ao banco de dados');
+          }
+
+          // Verifica se o cliente foi encontrado
+          if (funcionarios.length === 0) {
+              return res.status(404).send('Funcionario não encontrado');
+          }
+          
+          res.render('funcionario', {
+              funcAtual: funcionarios[0],
+              isEdit: true,
+              funcIndex: req.query.funcIndex || 0
+          });
       });
-    });
-  };
+  });
+    
+}
 
 module.exports = controller;
