@@ -67,6 +67,10 @@ router.get('/veiculo/next', veiculos.nextVeic);
 
 router.get('/veiculo/prev', veiculos.prevVeic);
 
+router.get('/veiculo/editVeiculo/:veicPlaca', veiculos.editVeic);
+
+router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
+
 
 
 module.exports = router;
