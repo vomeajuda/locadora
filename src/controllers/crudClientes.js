@@ -126,9 +126,7 @@ controller.update = (req, res) => {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
-    const query = `UPDATE clientes 
-                   SET clienteNome = ?, clienteEnde = ?, clienteTel = ?, clienteCidade = ?, clienteDataNasc = ?, clienteCNH = ?, clienteCNHCat = ?
-                   WHERE clienteCPF = ?`;
+    const query = `UPDATE clientes SET clienteNome = ?, clienteEnde = ?, clienteTel = ?, clienteCidade = ?, clienteDataNasc = ?, clienteCNH = ?, clienteCNHCat = ? WHERE clienteCPF = ?`;
 
     req.getConnection((err, conn) => {
         if (err) {
