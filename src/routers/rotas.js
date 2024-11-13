@@ -41,6 +41,10 @@ router.get('/clientes/next', clientes.next);
 
 router.get('/clientes/prev', clientes.prev);
 
+router.get('/clientes/editClientes/:clienteCPF', clientes.edit);
+
+router.post('/clientes/updateClientes', clientes.update);
+
 
 router.post('/funcionario/addFunc', funcionarios.save);
 
@@ -52,6 +56,10 @@ router.get('/funcionario/next', funcionarios.nextFunc);
 
 router.get('/funcionario/prev', funcionarios.prevFunc);
 
+router.get('/funcionario/editFunc/:funcMatricula', funcionarios.editFunc);
+
+router.post('/funcionario/updateFunc', funcionarios.updateFunc);
+
 
 router.post('/veiculo/addVeiculo', veiculos.saveVeic);
 
@@ -62,6 +70,10 @@ router.get('/veiculo/deleteVeic/:veicPlaca', veiculos.deleteVeic);
 router.get('/veiculo/next', veiculos.nextVeic);
 
 router.get('/veiculo/prev', veiculos.prevVeic);
+
+router.get('/veiculo/editVeiculo/:veicPlaca', veiculos.editVeic);
+
+router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
 
 
 

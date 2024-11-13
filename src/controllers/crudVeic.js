@@ -48,7 +48,7 @@ controller.listVeic = (req, res) => {
                 data: veiculos,  // Passa todos os veiculos para o template
                 veicAtual: veiculo,
                 veicIndex: veicIndex,
-        
+                isEdit: false
             });
         });
     });
@@ -120,21 +120,56 @@ controller.deleteVeic = (req, res) => {
     });
 };
 
-//método para editar o veic
-controller.edit = (req, res) => {
+
+controller.updateVeic = (req, res) => {
+    const { veicPlacaAux, veicMarca, veicModelo, veicCor, veicAno, veicComb, veicCat, veicStatusAlocado } = req.body;
+    
+    if (!veicPlacaAux || !veicMarca || !veicModelo || !veicAno || !veicCor || !veicComb || !veicCat || !veicStatusAlocado) {
+        return res.status(400).send('Todos os campos são obrigatórios');
+    }
+
+    const query = `UPDATE veiculos SET veicMarca = ?, veicModelo = ?, veicCor = ?, veicCat = ?, veicAno = ?, veicComb = ?, veicStatusAlocado = ? WHERE veicPlaca = ?`;
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(query, [veicMarca, veicModelo, veicCor, veicCat, veicAno, veicComb, veicStatusAlocado, veicPlacaAux], (err, result) => {
+            if (err) {
+                return res.status(500).send('Erro ao atualizar o veiculo');
+            }
+
+            res.redirect('/veiculo');
+        });
+    });
+};
+
+
+  controller.editVeic = (req, res) => { 
+    
     const { veicPlaca } = req.params;
-  
+   
+
     req.getConnection((err, conn) => {
       conn.query('SELECT * FROM veiculos WHERE veicPlaca = ?', [veicPlaca], (err, veiculos) => {
-        if (err) {
-          return res.status(500).send('Erro ao conectar ao banco de dados');
-        }
-        
-        res.render('veiculo', {
-          data: veiculos[0]
-        });
+          if (err) {
+              return res.status(500).send('Erro ao conectar ao banco de dados');
+          }
+
+          // Verifica se o cliente foi encontrado
+          if (veiculos.length === 0) {
+              return res.status(404).send('Veiculo não encontrado');
+          }
+          
+          res.render('veiculo', {
+              veicAtual: veiculos[0],
+              isEdit: true,
+              veicIndex: req.query.veicIndex || 0
+          });
       });
-    });
-  };
+  });
+    
+}
 
 module.exports = controller;
