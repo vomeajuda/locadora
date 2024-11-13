@@ -24,9 +24,6 @@ exports.listElprimotors = (req, res) => {
     res.render('elprimotors');
 };
 
-exports.listFuncionario = (req, res) => {
-    res.render('funcionario');
-};
 
 exports.listLogin = (req, res) => {
     res.render('login');
@@ -34,10 +31,6 @@ exports.listLogin = (req, res) => {
 
 exports.listOrdemServico = (req, res) => {
     res.render('ordemservico');
-}
-
-exports.listVeiculo = (req, res) => {
-    res.render('veiculo');
 }
 
 exports.listCadastro = (req, res) => {

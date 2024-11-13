@@ -21,41 +21,43 @@ controller.save = (req, res) => {
                 return res.status(500).send('Erro ao salvar o funcionario');
             }
 
-            res.redirect('/funcionarios');
+            res.redirect('/funcionario');
         });
     });
 };
 
 // Método para listar os funcionarios e navegar entre eles
-controller.listFunc = (req, res) => {
-    const funcIndex = parseInt(req.query.funcIndex) || 0; // Pega o índice do func da query string, se existir
+controller.listFuncionario = (req, res) => {
+    const funcIndex = parseInt(req.query.funcIndex) || 0; // Pega o índice do funcionario da query string, se existir
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
         // Consulta todos os funcionarios no banco de dados
-        conn.query('SELECT * FROM funcionarios', (err, funcionarioss) => {
+        conn.query('SELECT * FROM funcionarios', (err, funcionarios) => {
             if (err) {
                 return res.status(500).send('Erro ao consultar os funcionarios');
             }
 
-            // Pega o func atual baseado no índice
-            const func = funcionarios[funcIndex];
+            // Pega o funcionario atual baseado no índice
+            const funcionario = funcionarios[funcIndex];
 
-            // Exibe a página com o func atual e os botões de navegação
-            res.render('funcionarios', {
+            // Exibe a página com o funcionario atual e os botões de navegação
+            res.render('funcionario', {
                 data: funcionarios,  // Passa todos os funcionarios para o template
-                funcAtual: func,
+                funcAtual: funcionario,
                 funcIndex: funcIndex,
-                totalFunc: func.length // Passa o número total de funcionarios
+        
             });
         });
     });
 };
 
 // Método para navegação para o próximo funcionario
-controller.next = (req, res) => {
+controller.nextFunc = (req, res) => {
+
+
     const funcIndex = parseInt(req.query.funcIndex) + 1; // Incrementa o índice
     req.getConnection((err, conn) => {
         if (err) {
@@ -67,19 +69,19 @@ controller.next = (req, res) => {
                 return res.status(500).send('Erro ao consultar os funcionarios');
             }
 
-            // Se o índice for maior que o número total de funcionarios, volta para o primeiro
+            // Se o índice for maior que o número total de clientes, volta para o primeiro
             if (funcIndex >= funcionarios.length) {
-                return res.redirect(`/funcionarios?funcIndex=0`);
+                return res.redirect(`/funcionario?funcIndex=0`);
             }
 
-            // Redireciona para o próximo func
-            res.redirect(`/funcionarios?funcIndex=${funcIndex}`);
+            // Redireciona para o próximo cliente
+            res.redirect(`/funcionario?funcIndex=${funcIndex}`);
         });
     });
 };
 
 // Método para navegação para o funcionario anterior
-controller.prev = (req, res) => {
+controller.prevFunc = (req, res) => {
     const funcIndex = parseInt(req.query.funcIndex) - 1; // Decrementa o índice
     req.getConnection((err, conn) => {
         if (err) {
@@ -93,26 +95,27 @@ controller.prev = (req, res) => {
 
             // Se o índice for menor que 0, volta para o último func
             if (funcIndex < 0) {
-                return res.redirect(`/funcionarios?funcIndex=${funcionarios.length - 1}`);
+                return res.redirect(`/funcionario?funcIndex=${funcionarios.length - 1}`);
             }
 
             // Redireciona para o func anterior
-            res.redirect(`/funcionarios?funcIndex=${funcIndex}`);
+            res.redirect(`/funcionario?funcIndex=${funcIndex}`);
         });
     });
 };
 
 //método para deletar o func
-controller.delete = (req, res) => {
+controller.deleteFunc = (req, res) => {
     const { funcMatricula } = req.params;
+    
 
     req.getConnection((err, conn) => {
         conn.query('DELETE FROM funcionarios WHERE funcMatricula = ?', [funcMatricula], (err, rows) => {
             if (err) {
-                return res.status(500).send('Erro ao conectar ao banco de dados');
+                return res.status(500).send('Erro ao deletar o funcionario');
             }
 
-            res.redirect('/funcionarios');
+            res.redirect('/funcionario');
         });
     });
 };
@@ -127,7 +130,7 @@ controller.edit = (req, res) => {
           return res.status(500).send('Erro ao conectar ao banco de dados');
         }
         
-        res.render('funcionarios', {
+        res.render('funcionario', {
           data: funcionarios[0]
         });
       });
