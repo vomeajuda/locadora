@@ -28,32 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(rotas);
 
-app.get('/', rotas);
-
-app.get('/clientes', rotas);
-
-app.get('/buscacli', rotas);
-
-app.get('/buscafun', rotas);
-
-app.get('/buscaord', rotas);
-
-app.get('/buscavei', rotas);
-
-app.get('/elprimotors', rotas);
-
-app.get('/funcionario', rotas);
-
-app.get('/login', rotas);
-
-app.get('/ordemservico', rotas);
-
-app.get('/veiculo', rotas);
-
-app.get('/cadastro', rotas);
-
-
-
 app.listen(app.get('port'), () => {
     console.log('Server on port 3000');
 })

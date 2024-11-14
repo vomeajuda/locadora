@@ -1,4 +1,3 @@
-const controller = {};
 
 exports.list = (req, res) => {
     res.render('elprimotors');

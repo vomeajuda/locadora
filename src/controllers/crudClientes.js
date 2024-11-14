@@ -35,7 +35,7 @@ controller.listClientes = (req, res) => {
         }
 
         // Consulta todos os clientes no banco de dados
-        conn.query('SELECT * FROM clientes', (err, clientes) => {
+        conn.query('SELECT * FROM clientes', (err,clientes)  => {
             if (err) {
                 return res.status(500).send('Erro ao consultar os clientes');
             }
