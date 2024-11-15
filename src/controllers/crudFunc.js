@@ -172,4 +172,26 @@ controller.editFunc = (req, res) => {
     
 }
 
+controller.buscaFunc = (req, res) => {
+    const { matricula } = req.query
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        // Consulta todos os clientes no banco de dados
+        conn.query('SELECT * FROM funcionarios WHERE funcMatricula = ?', [matricula] , (err, funcionarios) => {
+            if (err) {
+                return res.status(500).send('Erro ao consultar os funcionarios');
+            }
+
+            res.render('buscafun', {
+                data: funcionarios,
+                isSearch: true,
+            })
+        })
+    })
+}
+
 module.exports = controller;

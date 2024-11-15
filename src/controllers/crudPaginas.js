@@ -4,11 +4,15 @@ exports.list = (req, res) => {
 };
 
 exports.listBuscacli = (req, res) => {
-    res.render('buscacli');
+    res.render('buscacli', {
+        isSearch: false,
+    });
 };
 
 exports.listBuscafun = (req, res) => {
-    res.render('buscafun');
+    res.render('buscafun', {
+        isSearch: false,
+    });
 };
 
 exports.listBuscaord = (req, res) => {

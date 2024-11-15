@@ -144,12 +144,12 @@ controller.update = (req, res) => {
 };
 
 
-  controller.edit = (req, res) => { 
+controller.edit = (req, res) => { 
     
-      const { clienteCPF } = req.params;
+    const { clienteCPF } = req.params;
      
   
-      req.getConnection((err, conn) => {
+    req.getConnection((err, conn) => {
         conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, clientes) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -168,5 +168,29 @@ controller.update = (req, res) => {
         });
     });
       
-  }
+};
+
+controller.busca = (req, res) => {
+    const { cpf } = req.query
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        // Consulta todos os clientes no banco de dados
+        conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [cpf] , (err, clientes) => {
+            if (err) {
+                return res.status(500).send('Erro ao consultar os clientes');
+            }
+
+            res.render('buscacli', {
+                data: clientes,
+                isSearch: true,
+            })
+        })
+    })
+}
+
+  
 module.exports = controller;
