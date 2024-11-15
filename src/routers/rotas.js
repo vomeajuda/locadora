@@ -45,6 +45,8 @@ router.get('/clientes/editClientes/:clienteCPF', clientes.edit);
 
 router.post('/clientes/updateClientes', clientes.update);
 
+router.get("/clientes/buscacli", clientes.busca);
+
 
 router.post('/funcionario/addFunc', funcionarios.save);
 
