@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
+    <a class="navbar-brand " href="/login">
       <img src="assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,23 +23,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
-        </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/veiculo">Veículos</a>
-        </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/funcionario">Funcionários</a>
-        </li>
-        <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/buscacli">Buscar usuario</a>
-          </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
           <img src="assets/Frame.svg" alt="">
-          Entrar
+          Logout
         </a>
       </span>
     </div>
@@ -113,16 +101,23 @@
                   
                   <div class="mt-5" >
                     <label for="tel" class="form-label">Setor:</label>
-                    <input type="text" name="usuarioSetor" class="form-control" id="tel" placeholder="Insira o codigo" aria-describedby="emailHelp">
+                    <select name="usuarioSetor" class="form-select" aria-label="Default select example">
+                      <option value=""></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
                   </div>
                   <div class="mt-5" >
                     <label for="status" class="form-label">Status:</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions"  id="inlineRadio1" value="1">
+                        <input class="form-check-input" type="radio" name="usuarioStatus"  id="inlineRadio1" value="1">
                         <label class="form-check-label" for="inlineRadio1"> Sim</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                        <input class="form-check-input" type="radio" name="usuarioStatus" id="inlineRadio2" value="0">
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                       </div>
                   </div>
@@ -132,7 +127,7 @@
                 <div class="container-sm d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
                   
-                    <a type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                    <a href="/login" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
                   </form>
                  
 

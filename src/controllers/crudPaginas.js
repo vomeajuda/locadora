@@ -1,6 +1,6 @@
 
 exports.list = (req, res) => {
-    res.render('elprimotors');
+    res.render('login');
 };
 
 exports.listBuscacli = (req, res) => {

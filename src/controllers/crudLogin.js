@@ -17,15 +17,17 @@ controller.logar = (req, res) => {
             return res.status(500).send('Erro ao buscar o login');
         }
         if (result.length > 0) {
-            res.redirect('/elprimotors');
+            const usuarioSetor = result[0].usuarioSetor;
+            if (usuarioSetor === 4){
+                res.redirect('/elprimotors');
+            } else {
+                res.redirect('/login');
+            }
         } else {
-            return res.status(401).send('Erro de retorno');
+            return res.status(401).send('Usuário ou senha incorretos');
         }
     });
-        });
-
-  
-     
+});  
 };
 
 module.exports = controller;
