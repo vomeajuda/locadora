@@ -252,6 +252,7 @@
 
   // Adiciona um evento para atualizar o href do botão
   campoCPF.addEventListener('input', () => {
+      event.preventDefault();
       const cpf = campoCPF.value.trim(); // Captura o valor e remove espaços extras
       btnSearch.href = `/clientes/buscacli?cpf=${encodeURIComponent(cpf)}`;
   });
