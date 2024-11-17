@@ -3,6 +3,7 @@ const controller = {}; //cria o método do controller
 //método para salvar o cliente
 controller.save = (req, res) => {
     const { clienteCPF, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat} = req.body;
+    const dpto = req.query.dpto;
     
     if (!clienteCPF || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
         return res.status(400).send('Todos os campos são obrigatórios');
@@ -20,8 +21,21 @@ controller.save = (req, res) => {
             if (err) {
                 return res.status(500).send('Erro ao salvar o cliente');
             }
-
-            res.redirect('/clientes');
+            
+            if (dpto == 1){
+                res.redirect('/clientes?dpto=1');
+            }
+            else if (dpto == 2){
+                res.redirect('/clientes?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/clientes?dpto=3')
+            }
+            else if (dpto == 4){
+                res.redirect('/clientes?dpto=4');
+            } else {
+                return res.status(404).send("Not Found");
+            }
         });
     });
 };
@@ -188,18 +202,18 @@ controller.delete = (req, res) => {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
             if (dpto == 1){
-                res.redirect('/clientesAtend');
+                res.redirect('/clientes?dpto=1');
             }
             else if (dpto == 2){
-                res.redirect('/clientesAdm');
+                res.redirect('/clientes?dpto=2');
             }
             else if (dpto == 3){
-                res.redirect('/clientesFinan')
+                res.redirect('/clientes?dpto=3')
             }
             else if (dpto == 4){
-                res.redirect('/clientes');
+                res.redirect('/clientes?dpto=4');
             } else {
-                return res.status(404).send("" + dpto);
+                return res.status(404).send("Not Found");
             }
         });
     });
@@ -208,7 +222,8 @@ controller.delete = (req, res) => {
 //método para editar o cliente
 controller.update = (req, res) => {
     const { clienteCPFaux, clienteNome, clienteEnde, clienteTel, clienteDataNasc, clienteCNH, clienteCidade, clienteCNHCat } = req.body;
-    
+    const dpto = req.query.dpto;
+
     if (!clienteCPFaux || !clienteNome || !clienteEnde || !clienteDataNasc || !clienteTel || !clienteCNH || !clienteCidade || !clienteCNHCat) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
@@ -225,7 +240,20 @@ controller.update = (req, res) => {
                 return res.status(500).send('Erro ao atualizar o cliente');
             }
 
-            res.redirect('/clientes');
+            if (dpto == 1){
+                res.redirect('/clientes?dpto=1');
+            }
+            else if (dpto == 2){
+                res.redirect('/clientes?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/clientes?dpto=3')
+            }
+            else if (dpto == 4){
+                res.redirect('/clientes?dpto=4');
+            } else {
+                return res.status(404).send("Not Found");
+            }
         });
     });
 };
@@ -233,7 +261,8 @@ controller.update = (req, res) => {
 
 controller.edit = (req, res) => { 
     
-    const { clienteCPF } = req.params;
+    const clienteCPF = req.query.clienteCPF;
+    const dpto = req.query.dpto;
      
   
     req.getConnection((err, conn) => {
@@ -246,12 +275,35 @@ controller.edit = (req, res) => {
             if (clientes.length === 0) {
                 return res.status(404).send('Cliente não encontrado');
             }
-            
-            res.render('clientes', {
-                clienteAtual: clientes[0],
-                isEdit: true,
-                clienteIndex: req.query.clienteIndex || 0
-            });
+
+            if (dpto == 1){
+                res.render('clientesAtend', {
+                    clienteAtual: clientes[0],
+                    isEdit: true,
+                    clienteIndex: req.query.clienteIndex || 0
+                });
+            }
+            else if (dpto == 2){
+                res.render('clientesAdm', {
+                    clienteAtual: clientes[0],
+                    isEdit: true,
+                    clienteIndex: req.query.clienteIndex || 0
+                });
+            }
+            else if (dpto == 3){
+                res.render('clientesFinan', {
+                    clienteAtual: clientes[0],
+                    isEdit: true,
+                    clienteIndex: req.query.clienteIndex || 0
+                });
+            }
+            else if (dpto == 4){
+                res.render('clientes', {
+                    clienteAtual: clientes[0],
+                    isEdit: true,
+                    clienteIndex: req.query.clienteIndex || 0
+                });
+            }else {return res.status(404).send("Not Found")}
         });
     });
       

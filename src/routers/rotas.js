@@ -49,7 +49,7 @@ router.get('/clientes/next', clientes.next);
 
 router.get('/clientes/prev', clientes.prev);
 
-router.get('/clientes/editClientes/:clienteCPF', clientes.edit);
+router.get('/clientes/editClientes', clientes.edit);
 
 router.post('/clientes/updateClientes', clientes.update);
 

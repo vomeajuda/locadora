@@ -87,7 +87,7 @@
 
         </a>
 
-        <a href="/clientes/editClientes/<%=clienteAtual.clienteCPF %>" class="down btn btn-light px-5">
+        <a href="/clientes/editClientes?clienteCPF=<%=clienteAtual.clienteCPF %>&dpto=4" class="down btn btn-light px-5">
             <img class="imgd" src="/assets/pencil-square.svg" alt="">
         </a>
          
@@ -114,7 +114,7 @@
             </div>
          <div class="row justify-content-center ">
             <div class="col-md-4 col-sm-12">
-              <form action="<%= isEdit ? '/clientes/updateClientes' : '/clientes/addClientes' %>" method="post">
+              <form action="<%= isEdit ? '/clientes/updateClientes?dpto=4' : '/clientes/addClientes?dpto=4' %>" method="post">
                 <% if (isEdit) { %>
                     <input type="hidden" name="clienteCPFaux" value="<%= clienteAtual.clienteCPF %>">
                 <% } %>
@@ -170,7 +170,7 @@
                     <%= isEdit ? 'Atualizar' : 'Salvar' %>
                 </button>
               
-                <a href="/clientes" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                <a href="/clientes?dpto=4" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
             </form>
                  
 
