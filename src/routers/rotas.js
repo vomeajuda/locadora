@@ -20,6 +20,14 @@ router.get('/buscavei', paginas.listBuscavei);
 
 router.get('/elprimotors', paginas.listElprimotors);
 
+router.get('/elprimotorsAtend', paginas.listElprimotorsAtend);
+
+router.get('/elprimotorsAdm', paginas.listElprimotorsAdm);
+
+router.get('/elprimotorsFinanc', paginas.listElprimotorsFinanc);
+
+router.get('/elprimotorsCopa', paginas.listElprimotorsCopa);
+
 router.get('/login', paginas.listLogin);
 
 router.get('/ordemservico', paginas.listOrdemServico);
