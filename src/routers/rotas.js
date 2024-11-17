@@ -43,7 +43,7 @@ router.get('/clientes', clientes.listClientes);
 
 router.post('/clientes/addClientes', clientes.save);
 
-router.get('/clientes/deleteClientes/:clienteCPF', clientes.delete);
+router.get('/clientes/deleteClientes', clientes.delete);
 
 router.get('/clientes/next', clientes.next);
 

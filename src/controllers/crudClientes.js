@@ -29,6 +29,7 @@ controller.save = (req, res) => {
 // Método para listar os clientes e navegar entre eles
 controller.listClientes = (req, res) => {
     const clienteIndex = parseInt(req.query.clienteIndex) || 0; // Pega o índice do cliente da query string, se existir
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -43,14 +44,44 @@ controller.listClientes = (req, res) => {
             // Pega o cliente atual baseado no índice
             const cliente = clientes[clienteIndex];
 
-            // Exibe a página com o cliente atual e os botões de navegação
-            res.render('clientes', {
-                data: clientes,  // Passa todos os clientes para o template
+            if (dpto == 1){
+                res.render('clientesAtend', {
+                data: clientes,
                 clienteAtual: cliente,
                 clienteIndex: clienteIndex,
                 isEdit: false
                 
-            });
+                });
+            }
+            else if (dpto == 2){
+                res.render('clientesAdm', {
+                data: clientes,
+                clienteAtual: cliente,
+                clienteIndex: clienteIndex,
+                isEdit: false
+                
+                });
+            }
+            else if (dpto == 3){
+                res.render('clientesFinan', {
+                data: clientes,
+                clienteAtual: cliente,
+                clienteIndex: clienteIndex,
+                isEdit: false
+                
+                });
+            }
+            else if (dpto == 4){
+                res.render('clientes', {
+                data: clientes,
+                clienteAtual: cliente,
+                clienteIndex: clienteIndex,
+                isEdit: false
+                
+                });
+            }else{
+                return res.status(404).send("Not Found");
+            }
         });
     });
 };
@@ -105,15 +136,28 @@ controller.prev = (req, res) => {
 
 //método para deletar o cliente
 controller.delete = (req, res) => {
-    const { clienteCPF } = req.params;
+    const clienteCPF = req.query.clienteCPF;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
         conn.query('DELETE FROM clientes WHERE clienteCPF = ?', [clienteCPF], (err, rows) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }
-
-            res.redirect('/clientes');
+            if (dpto == 1){
+                res.redirect('/clientesAtend');
+            }
+            else if (dpto == 2){
+                res.redirect('/clientesAdm');
+            }
+            else if (dpto == 3){
+                res.redirect('/clientesFinan')
+            }
+            else if (dpto == 4){
+                res.redirect('/clientes');
+            } else {
+                return res.status(404).send("" + dpto);
+            }
         });
     });
 };

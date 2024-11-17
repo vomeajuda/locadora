@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
+    <a class="navbar-brand " href="/elprimotorsAtend">
       <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,15 +26,6 @@
         <li class="nav-item me-5 ">
           <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
         </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/veiculo">Veículos</a>
-        </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/funcionario">Funcionários</a>
-        </li>
-        <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/buscacli">Buscar clientes</a>
-          </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
@@ -94,7 +85,7 @@
          
 
 
-        <a href="/clientes/deleteClientes?clienteCPF=<%= clienteAtual.clienteCPF %>&dpto=4" class="down btn btn-light  px-5">
+        <a href="/clientes/deleteClientes?clienteCPF=<%= clienteAtual.clienteCPF %>&dpto=1" class="down btn btn-light  px-5">
             <img class="imgd" src="/assets/trash3.svg" alt="">
         </a>
         <a href="/clientes/next?clienteIndex=<%= clienteIndex %>" class="down btn btn-light px-3">
