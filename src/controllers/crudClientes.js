@@ -89,6 +89,7 @@ controller.listClientes = (req, res) => {
 // Método para navegação para o próximo cliente
 controller.next = (req, res) => {
     const clienteIndex = parseInt(req.query.clienteIndex) + 1; // Incrementa o índice
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -101,11 +102,32 @@ controller.next = (req, res) => {
 
             // Se o índice for maior que o número total de clientes, volta para o primeiro
             if (clienteIndex >= clientes.length) {
-                return res.redirect(`/clientes?clienteIndex=0`);
+                if(dpto == 1){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=1`);
+                }
+                else if(dpto == 2){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=2`);
+                }
+                else if(dpto == 3){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=3`);
+                }
+                else if(dpto == 4){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=4`);
+                } else {res.status(404).send("Not Found")}
             }
 
-            // Redireciona para o próximo cliente
-            res.redirect(`/clientes?clienteIndex=${clienteIndex}`);
+            if (dpto == 1){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=1`);
+            }
+            else if (dpto == 2){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=2`);
+            }
+            else if (dpto == 3){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=3`);
+            }
+            else if (dpto == 4){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=4`);
+            }else {res.status(404).send("Not Found")}
         });
     });
 };
@@ -113,6 +135,7 @@ controller.next = (req, res) => {
 // Método para navegação para o cliente anterior
 controller.prev = (req, res) => {
     const clienteIndex = parseInt(req.query.clienteIndex) - 1; // Decrementa o índice
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -123,13 +146,33 @@ controller.prev = (req, res) => {
                 return res.status(500).send('Erro ao consultar os clientes');
             }
 
-            // Se o índice for menor que 0, volta para o último cliente
-            if (clienteIndex < 0) {
-                return res.redirect(`/clientes?clienteIndex=${clientes.length - 1}`);
+            if (clienteIndex >= clientes.length) {
+                if(dpto == 1){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=1`);
+                }
+                else if(dpto == 2){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=2`);
+                }
+                else if(dpto == 3){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=3`);
+                }
+                else if(dpto == 4){
+                    return res.redirect(`/clientes?clienteIndex=0&dpto=4`);
+                } else {res.status(404).send("Not Found")}
             }
 
-            // Redireciona para o cliente anterior
-            res.redirect(`/clientes?clienteIndex=${clienteIndex}`);
+            if (dpto == 1){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=1`);
+            }
+            else if (dpto == 2){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=2`);
+            }
+            else if (dpto == 3){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=3`);
+            }
+            else if (dpto == 4){
+                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=4`);
+            }else {res.status(404).send("Not Found")}
         });
     });
 };
