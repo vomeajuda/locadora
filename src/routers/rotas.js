@@ -60,13 +60,13 @@ router.post('/funcionario/addFunc', funcionarios.save);
 
 router.get('/funcionario', funcionarios.listFuncionario);
 
-router.get('/funcionario/deleteFunc/:funcMatricula', funcionarios.deleteFunc);
+router.get('/funcionario/deleteFunc', funcionarios.deleteFunc);
 
 router.get('/funcionario/next', funcionarios.nextFunc);
 
 router.get('/funcionario/prev', funcionarios.prevFunc);
 
-router.get('/funcionario/editFunc/:funcMatricula', funcionarios.editFunc);
+router.get('/funcionario/editFunc', funcionarios.editFunc);
 
 router.post('/funcionario/updateFunc', funcionarios.updateFunc);
 

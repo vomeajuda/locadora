@@ -3,6 +3,7 @@ const controller = {}; //cria o método do controller
 //método para salvar o funcionario
 controller.save = (req, res) => {
     const { funcMatricula, funcNome, funcDepto, funcSalario, funcAdmissao, funcFilho, funcSexo, funcAtivo} = req.body;
+    const dpto = req.query.dpto;
     
     if (!funcMatricula || !funcNome || !funcDepto || !funcSalario || !funcAdmissao || !funcFilho || !funcSexo || !funcAtivo) {
         return res.status(400).send('Todos os campos são obrigatórios');
@@ -21,7 +22,15 @@ controller.save = (req, res) => {
                 return res.status(500).send('Erro ao salvar o funcionario');
             }
 
-            res.redirect('/funcionario');
+            if (dpto == 2){
+                res.redirect('/funcionario?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/funcionario?dpto=3');
+            }
+            else if (dpto == 4){
+                res.redirect('/funcionario?dpto=4');
+            }
         });
     });
 };
@@ -29,6 +38,7 @@ controller.save = (req, res) => {
 // Método para listar os funcionarios e navegar entre eles
 controller.listFuncionario = (req, res) => {
     const funcIndex = parseInt(req.query.funcIndex) || 0; // Pega o índice do funcionario da query string, se existir
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -44,12 +54,30 @@ controller.listFuncionario = (req, res) => {
             const funcionario = funcionarios[funcIndex];
 
             // Exibe a página com o funcionario atual e os botões de navegação
-            res.render('funcionario', {
-                data: funcionarios,  // Passa todos os funcionarios para o template
-                funcAtual: funcionario,
-                funcIndex: funcIndex,
-                isEdit: false
-            });
+            if (dpto == 2){
+                res.render('funcionarioAdm', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
+            else if (dpto == 3){
+                res.render('funcionarioFinan', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
+            else if (dpto == 4){
+                res.render('funcionario', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
         });
     });
 };
@@ -57,7 +85,7 @@ controller.listFuncionario = (req, res) => {
 // Método para navegação para o próximo funcionario
 controller.nextFunc = (req, res) => {
 
-
+    const dpto = req.query.dpto;
     const funcIndex = parseInt(req.query.funcIndex) + 1; // Incrementa o índice
     req.getConnection((err, conn) => {
         if (err) {
@@ -71,11 +99,27 @@ controller.nextFunc = (req, res) => {
 
             // Se o índice for maior que o número total de clientes, volta para o primeiro
             if (funcIndex >= funcionarios.length) {
-                return res.redirect(`/funcionario?funcIndex=0`);
+                if (dpto == 2){
+                return res.redirect(`/funcionario?funcIndex=0&dpto=2`);
+                }
+                else if (dpto == 3){
+                    return res.redirect(`/funcionario?funcIndex=0&dpto=3`);
+                }
+                else if (dpto == 4){
+                    return res.redirect(`/funcionario?funcIndex=0&dpto=4`);
+                }
             }
 
             // Redireciona para o próximo cliente
-            res.redirect(`/funcionario?funcIndex=${funcIndex}`);
+            if (dpto == 2){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=2`);
+            }
+            else if (dpto == 3){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=3`);
+            }
+            else if (dpto == 4){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=4`);
+            }
         });
     });
 };
@@ -95,7 +139,9 @@ controller.prevFunc = (req, res) => {
 
             // Se o índice for menor que 0, volta para o último func
             if (funcIndex < 0) {
-                return res.redirect(`/funcionario?funcIndex=${funcionarios.length - 1}`);
+                if (dpto == 2){
+                return res.redirect(`/funcionario?funcIndex=${funcionarios.length}`);
+                }
             }
 
             // Redireciona para o func anterior
@@ -148,7 +194,7 @@ controller.updateFunc = (req, res) => {
 
 controller.editFunc = (req, res) => { 
     
-    const { funcMatricula } = req.params;
+    const funcMatricula = req.query.funcMatricula;
    
 
     req.getConnection((err, conn) => {
