@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
+    <a class="navbar-brand " href="/elprimotorsFinan">
       <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,18 +23,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/veiculo?dpto=3">Veículos</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
+          <a class="nav-link active mx-2" href="/funcionario?dpto=3">Funcionários</a>
         </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/funcionario?dpto=4">Funcionários</a>
-        </li>
-        <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/buscacli">Buscar clientes</a>
-          </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
@@ -82,22 +76,22 @@
  <div class="d-flex justify-content-center my-5">
 
         
-        <a href="/clientes/prev?clienteIndex=<%= clienteIndex %>&dpto=4" class="down btn btn-light px-3">
+        <a href="/clientes/prev?clienteIndex=<%= clienteIndex %>&dpto=3" class="down btn btn-light px-3">
             <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
 
         </a>
 
-        <a href="/clientes/editClientes?clienteCPF=<%=clienteAtual.clienteCPF %>&dpto=4" class="down btn btn-light px-5">
+        <a href="/clientes/editClientes?clienteCPF=<%=clienteAtual.clienteCPF %>&dpto=3" class="down btn btn-light px-5">
             <img class="imgd" src="/assets/pencil-square.svg" alt="">
         </a>
          
          
 
 
-        <a href="/clientes/deleteClientes?clienteCPF=<%= clienteAtual.clienteCPF %>&dpto=4" class="down btn btn-light  px-5">
+        <a href="/clientes/deleteClientes?clienteCPF=<%= clienteAtual.clienteCPF %>&dpto=3" class="down btn btn-light  px-5">
             <img class="imgd" src="/assets/trash3.svg" alt="">
         </a>
-        <a href="/clientes/next?clienteIndex=<%= clienteIndex %>&dpto=4" class="down btn btn-light px-3">
+        <a href="/clientes/next?clienteIndex=<%= clienteIndex %>&dpto=3" class="down btn btn-light px-3">
             <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
         </a>
     
@@ -114,7 +108,7 @@
             </div>
          <div class="row justify-content-center ">
             <div class="col-md-4 col-sm-12">
-              <form action="<%= isEdit ? '/clientes/updateClientes?dpto=4' : '/clientes/addClientes?dpto=4' %>" method="post">
+              <form action="<%= isEdit ? '/clientes/updateClientes?dpto=3' : '/clientes/addClientes?dpto=3' %>" method="post">
                 <% if (isEdit) { %>
                     <input type="hidden" name="clienteCPFaux" value="<%= clienteAtual.clienteCPF %>">
                 <% } %>
@@ -170,7 +164,7 @@
                     <%= isEdit ? 'Atualizar' : 'Salvar' %>
                 </button>
               
-                <a href="/clientes?dpto=4" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                <a href="/clientes?dpto=3" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
             </form>
                  
 

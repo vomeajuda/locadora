@@ -3,6 +3,7 @@ const controller = {}; //cria o método do controller
 //método para salvar o funcionario
 controller.save = (req, res) => {
     const { funcMatricula, funcNome, funcDepto, funcSalario, funcAdmissao, funcFilho, funcSexo, funcAtivo} = req.body;
+    const dpto = req.query.dpto;
     
     if (!funcMatricula || !funcNome || !funcDepto || !funcSalario || !funcAdmissao || !funcFilho || !funcSexo || !funcAtivo) {
         return res.status(400).send('Todos os campos são obrigatórios');
@@ -21,7 +22,15 @@ controller.save = (req, res) => {
                 return res.status(500).send('Erro ao salvar o funcionario');
             }
 
-            res.redirect('/funcionario');
+            if (dpto == 2){
+                res.redirect('/funcionario?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/funcionario?dpto=3');
+            }
+            else if (dpto == 4){
+                res.redirect('/funcionario?dpto=4');
+            }
         });
     });
 };
@@ -29,6 +38,7 @@ controller.save = (req, res) => {
 // Método para listar os funcionarios e navegar entre eles
 controller.listFuncionario = (req, res) => {
     const funcIndex = parseInt(req.query.funcIndex) || 0; // Pega o índice do funcionario da query string, se existir
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -44,12 +54,30 @@ controller.listFuncionario = (req, res) => {
             const funcionario = funcionarios[funcIndex];
 
             // Exibe a página com o funcionario atual e os botões de navegação
-            res.render('funcionario', {
-                data: funcionarios,  // Passa todos os funcionarios para o template
-                funcAtual: funcionario,
-                funcIndex: funcIndex,
-                isEdit: false
-            });
+            if (dpto == 2){
+                res.render('funcionarioAdm', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
+            else if (dpto == 3){
+                res.render('funcionarioFinan', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
+            else if (dpto == 4){
+                res.render('funcionario', {
+                    data: funcionarios,  // Passa todos os funcionarios para o template
+                    funcAtual: funcionario,
+                    funcIndex: funcIndex,
+                    isEdit: false
+                });
+            }
         });
     });
 };
@@ -57,7 +85,7 @@ controller.listFuncionario = (req, res) => {
 // Método para navegação para o próximo funcionario
 controller.nextFunc = (req, res) => {
 
-
+    const dpto = req.query.dpto;
     const funcIndex = parseInt(req.query.funcIndex) + 1; // Incrementa o índice
     req.getConnection((err, conn) => {
         if (err) {
@@ -69,20 +97,37 @@ controller.nextFunc = (req, res) => {
                 return res.status(500).send('Erro ao consultar os funcionarios');
             }
 
-            // Se o índice for maior que o número total de clientes, volta para o primeiro
+            // Se o índice for maior que o número total de funcionarios, volta para o primeiro
             if (funcIndex >= funcionarios.length) {
-                return res.redirect(`/funcionario?funcIndex=0`);
+                if (dpto == 2){
+                return res.redirect(`/funcionario?funcIndex=0&dpto=2`);
+                }
+                else if (dpto == 3){
+                    return res.redirect(`/funcionario?funcIndex=0&dpto=3`);
+                }
+                else if (dpto == 4){
+                    return res.redirect(`/funcionario?funcIndex=0&dpto=4`);
+                }
             }
 
             // Redireciona para o próximo cliente
-            res.redirect(`/funcionario?funcIndex=${funcIndex}`);
+            if (dpto == 2){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=2`);
+            }
+            else if (dpto == 3){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=3`);
+            }
+            else if (dpto == 4){
+                res.redirect(`/funcionario?funcIndex=${funcIndex}&dpto=4`);
+            }
         });
     });
 };
 
 // Método para navegação para o funcionario anterior
 controller.prevFunc = (req, res) => {
-    const funcIndex = parseInt(req.query.funcIndex) - 1; // Decrementa o índice
+    const funcIndex = parseInt(req.query.funcIndex); // Índice recebido
+    const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -90,24 +135,39 @@ controller.prevFunc = (req, res) => {
 
         conn.query('SELECT * FROM funcionarios', (err, funcionarios) => {
             if (err) {
-                return res.status(500).send('Erro ao consultar os funcionarios');
+                return res.status(500).send('Erro ao consultar os funcionários');
             }
 
-            // Se o índice for menor que 0, volta para o último func
-            if (funcIndex < 0) {
-                return res.redirect(`/funcionario?funcIndex=${funcionarios.length - 1}`);
+            const totalFuncionarios = funcionarios.length; // Total de funcionários
+            if (totalFuncionarios === 0) {
+                return res.status(404).send('Nenhum funcionário encontrado');
             }
 
-            // Redireciona para o func anterior
-            res.redirect(`/funcionario?funcIndex=${funcIndex}`);
+            let auxFuncIndex = funcIndex - 1; // Decrementa o índice
+
+            if (auxFuncIndex < 0) {
+                auxFuncIndex = totalFuncionarios - 1;
+            }
+
+            // Verifica o departamento e redireciona
+            if (dpto == 2) {
+                res.redirect(`/funcionario?funcIndex=${auxFuncIndex}&dpto=2`);
+            } else if (dpto == 3) {
+                res.redirect(`/funcionario?funcIndex=${auxFuncIndex}&dpto=3`);
+            } else if (dpto == 4) {
+                res.redirect(`/funcionario?funcIndex=${auxFuncIndex}&dpto=4`);
+            } else {
+                res.status(404).send("Departamento não encontrado");
+            }
         });
     });
 };
 
+
 //método para deletar o func
 controller.deleteFunc = (req, res) => {
-    const { funcMatricula } = req.params;
-    
+    const funcMatricula = req.query.funcMatricula;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
         conn.query('DELETE FROM funcionarios WHERE funcMatricula = ?', [funcMatricula], (err, rows) => {
@@ -115,7 +175,15 @@ controller.deleteFunc = (req, res) => {
                 return res.status(500).send('Erro ao deletar o funcionario');
             }
 
-            res.redirect('/funcionario');
+            if (dpto == 2){
+                res.redirect('/funcionario?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/funcionario?dpto=3');
+            }
+            else if (dpto == 4){
+                res.redirect('/funcionario?dpto=4');
+            }
         });
     });
 };
@@ -123,6 +191,7 @@ controller.deleteFunc = (req, res) => {
 
 controller.updateFunc = (req, res) => {
     const { funcMatriculaAux, funcNome, funcDepto, funcSalario, funcAdmissao, funcFilho, funcSexo, funcAtivo } = req.body;
+    const dpto = req.query.dpto;
     
     if (!funcMatriculaAux || !funcNome || !funcDepto || !funcAdmissao || !funcSalario || !funcFilho || !funcSexo || !funcAtivo) {
         return res.status(400).send('Todos os campos são obrigatórios');
@@ -140,7 +209,15 @@ controller.updateFunc = (req, res) => {
                 return res.status(500).send('Erro ao atualizar o cliente');
             }
 
-            res.redirect('/funcionario');
+            if (dpto == 2){
+                res.redirect('/funcionario?dpto=2');
+            }
+            else if (dpto == 3){
+                res.redirect('/funcionario?dpto=3');
+            }
+            else if (dpto == 4){
+                res.redirect('/funcionario?dpto=4');
+            }
         });
     });
 };
@@ -148,25 +225,41 @@ controller.updateFunc = (req, res) => {
 
 controller.editFunc = (req, res) => { 
     
-    const { funcMatricula } = req.params;
-   
+    const funcMatricula = req.query.funcMatricula;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
       conn.query('SELECT * FROM funcionarios WHERE funcMatricula = ?', [funcMatricula], (err, funcionarios) => {
-          if (err) {
-              return res.status(500).send('Erro ao conectar ao banco de dados');
-          }
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
 
-          // Verifica se o cliente foi encontrado
-          if (funcionarios.length === 0) {
-              return res.status(404).send('Funcionario não encontrado');
-          }
-          
-          res.render('funcionario', {
-              funcAtual: funcionarios[0],
-              isEdit: true,
-              funcIndex: req.query.funcIndex || 0
-          });
+        // Verifica se o cliente foi encontrado
+        if (funcionarios.length === 0) {
+            return res.status(404).send('Funcionario não encontrado');
+        }
+        
+        if (dpto == 2){
+            res.render('funcionarioAdm', {
+                funcAtual: funcionarios[0],
+                isEdit: true,
+                funcIndex: req.query.funcIndex || 0
+            });
+        }
+        else if (dpto == 3){
+            res.render('funcionarioFinan', {
+                funcAtual: funcionarios[0],
+                isEdit: true,
+                funcIndex: req.query.funcIndex || 0
+            });
+        }
+        else if (dpto == 4){
+            res.render('funcionario', {
+                funcAtual: funcionarios[0],
+                isEdit: true,
+                funcIndex: req.query.funcIndex || 0
+            });
+        }
       });
   });
     
@@ -180,7 +273,7 @@ controller.buscaFunc = (req, res) => {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        // Consulta todos os clientes no banco de dados
+        // Consulta todos os funcionarios no banco de dados
         conn.query('SELECT * FROM funcionarios WHERE funcMatricula = ?', [matricula] , (err, funcionarios) => {
             if (err) {
                 return res.status(500).send('Erro ao consultar os funcionarios');

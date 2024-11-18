@@ -27,6 +27,21 @@ exports.listElprimotors = (req, res) => {
     res.render('elprimotors');
 };
 
+exports.listElprimotorsAtend = (req, res) => {
+    res.render('elprimotorsAtend');
+};
+
+exports.listElprimotorsAdm = (req, res) => {
+    res.render('elprimotorsAdm');
+};
+
+exports.listElprimotorsFinan = (req, res) => {
+    res.render('elprimotorsFinan');
+};
+
+exports.listElprimotorsCopa = (req, res) => {
+    res.render('elprimotorsCopa');
+};
 
 exports.listLogin = (req, res) => {
     res.render('login');

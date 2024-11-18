@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
+    <a class="navbar-brand " href="/elprimotorsAdm">
       <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,17 +23,11 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/clientes?dpto=2">Clientes</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
+          <a class="nav-link active mx-2" href="/veiculo?dpto=2">Veículos</a>
         </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/clientes?dpto=4">Clientes</a>
-        </li>
-        <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/buscafun">Buscar funcionários</a>
-          </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
@@ -76,18 +70,18 @@
  <div class="d-flex justify-content-center my-5">
 
         
-        <a href="/funcionario/prev?funcIndex=<%= funcIndex %>" class="down btn btn-light px-3">
+        <a href="/funcionario/prev?funcIndex=<%= funcIndex %>&dpto=2" class="down btn btn-light px-3">
             <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
         </a>
-        <a href="/funcionario/editFunc/<%=funcAtual.funcMatricula %>" class="down btn btn-light px-5">
+        <a href="/funcionario/editFunc?funcMatricula=<%=funcAtual.funcMatricula %>&dpto=2" class="down btn btn-light px-5">
             <img class="imgd" src="/assets/pencil-square.svg" alt="">
         </a>
          
          
-        <a href="/funcionario/deleteFunc/<%= funcAtual.funcMatricula %>" class="down btn btn-light  px-5">
+        <a href="/funcionario/deleteFunc?funcMatricula=<%= funcAtual.funcMatricula %>&dpto=2" class="down btn btn-light  px-5">
             <img class="imgd" src="/assets/trash3.svg" alt="">
         </a>
-        <a href="/funcionario/next?funcIndex=<%= funcIndex %>" class="down btn btn-light px-3">
+        <a href="/funcionario/next?funcIndex=<%= funcIndex %>&dpto=2" class="down btn btn-light px-3">
           <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
       </a>
        
@@ -104,7 +98,7 @@
             </div>
          <div class="row justify-content-center ">
             <div class="col-md-4 col-sm-12">
-              <form action="<%= isEdit ? '/funcionario/updateFunc' : '/funcionario/addFunc' %>" method="post">
+              <form action="<%= isEdit ? '/funcionario/updateFunc?dpto=2' : '/funcionario/addFunc?dpto=2' %>" method="post">
                 <% if (isEdit) { %>
                     <input type="hidden" name="funcMatriculaAux" value="<%= funcAtual.funcMatricula %>">
                 <% } %>
@@ -162,7 +156,7 @@
                 <div class="container-sm d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
                  
-                    <a href="/funcionario" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                    <a href="/funcionario?dpto=2" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
                   </form>
                  </div>
         </div>

@@ -18,8 +18,16 @@ controller.logar = (req, res) => {
         }
         if (result.length > 0) {
             const usuarioSetor = result[0].usuarioSetor;
-            if (usuarioSetor === 4){
+            if (usuarioSetor === 1){
+                res.redirect('/elprimotorsAtend');
+            } else if (usuarioSetor === 2){
+                res.redirect('/elprimotorsAdm');
+            } else if (usuarioSetor === 3){
+                res.redirect('/elprimotorsFinan');
+            } else if (usuarioSetor === 4){
                 res.redirect('/elprimotors');
+            } else if (usuarioSetor === 5){
+                res.redirect('/elprimotorsCopa');
             } else {
                 res.redirect('/login');
             }
