@@ -77,13 +77,13 @@ router.post('/veiculo/addVeiculo', veiculos.saveVeic);
 
 router.get('/veiculo', veiculos.listVeic);
 
-router.get('/veiculo/deleteVeic/:veicPlaca', veiculos.deleteVeic);
+router.get('/veiculo/deleteVeic', veiculos.deleteVeic);
 
 router.get('/veiculo/next', veiculos.nextVeic);
 
 router.get('/veiculo/prev', veiculos.prevVeic);
 
-router.get('/veiculo/editVeiculo/:veicPlaca', veiculos.editVeic);
+router.get('/veiculo/editVeiculo', veiculos.editVeic);
 
 router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
 
