@@ -23,7 +23,7 @@ controller.logar = (req, res) => {
             } else if (usuarioSetor === 2){
                 res.redirect('/elprimotorsAdm');
             } else if (usuarioSetor === 3){
-                res.redirect('/elprimotorsFinanc');
+                res.redirect('/elprimotorsFinan');
             } else if (usuarioSetor === 4){
                 res.redirect('/elprimotors');
             } else if (usuarioSetor === 5){

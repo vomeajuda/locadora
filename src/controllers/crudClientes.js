@@ -148,7 +148,7 @@ controller.next = (req, res) => {
 
 // Método para navegação para o cliente anterior
 controller.prev = (req, res) => {
-    const clienteIndex = parseInt(req.query.clienteIndex) - 1; // Decrementa o índice
+    const clienteIndex = parseInt(req.query.clienteIndex); // Índice recebido
     const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
         if (err) {
@@ -160,33 +160,29 @@ controller.prev = (req, res) => {
                 return res.status(500).send('Erro ao consultar os clientes');
             }
 
-            if (clienteIndex >= clientes.length) {
-                if(dpto == 1){
-                    return res.redirect(`/clientes?clienteIndex=0&dpto=1`);
-                }
-                else if(dpto == 2){
-                    return res.redirect(`/clientes?clienteIndex=0&dpto=2`);
-                }
-                else if(dpto == 3){
-                    return res.redirect(`/clientes?clienteIndex=0&dpto=3`);
-                }
-                else if(dpto == 4){
-                    return res.redirect(`/clientes?clienteIndex=0&dpto=4`);
-                } else {res.status(404).send("Not Found")}
+            const totalClientes = clientes.length; // Total de funcionários
+            if (totalClientes === 0) {
+                return res.status(404).send('Nenhum funcionário encontrado');
             }
 
+            let auxClienteIndex = clienteIndex - 1; // Decrementa o índice
+
+            if (auxClienteIndex < 0) {
+                auxClienteIndex = totalClientes - 1;
+            }
+
+            // Verifica o departamento e redireciona
             if (dpto == 1){
-                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=1`);
+                res.redirect(`/clientes?clienteIndex=${auxClienteIndex}&dpto=1`);
+            } else if (dpto == 2) {
+                res.redirect(`/clientes?clienteIndex=${auxClienteIndex}&dpto=2`);
+            } else if (dpto == 3) {
+                res.redirect(`/clientes?clienteIndex=${auxClienteIndex}&dpto=3`);
+            } else if (dpto == 4) {
+                res.redirect(`/clientes?clienteIndex=${auxClienteIndex}&dpto=4`);
+            } else {
+                res.status(404).send("NotFound");
             }
-            else if (dpto == 2){
-                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=2`);
-            }
-            else if (dpto == 3){
-                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=3`);
-            }
-            else if (dpto == 4){
-                res.redirect(`/clientes?clienteIndex=${clienteIndex}&dpto=4`);
-            }else {res.status(404).send("Not Found")}
         });
     });
 };

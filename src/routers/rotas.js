@@ -24,7 +24,7 @@ router.get('/elprimotorsAtend', paginas.listElprimotorsAtend);
 
 router.get('/elprimotorsAdm', paginas.listElprimotorsAdm);
 
-router.get('/elprimotorsFinanc', paginas.listElprimotorsFinanc);
+router.get('/elprimotorsFinan', paginas.listElprimotorsFinan);
 
 router.get('/elprimotorsCopa', paginas.listElprimotorsCopa);
 

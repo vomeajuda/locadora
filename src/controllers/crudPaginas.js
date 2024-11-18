@@ -36,8 +36,8 @@ exports.listElprimotorsAdm = (req, res) => {
     res.render('elprimotorsAdm');
 };
 
-exports.listElprimotorsFinanc = (req, res) => {
-    res.render('elprimotorsFinanc');
+exports.listElprimotorsFinan = (req, res) => {
+    res.render('elprimotorsFinan');
 };
 
 exports.listElprimotorsCopa = (req, res) => {
