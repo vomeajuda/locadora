@@ -34,9 +34,11 @@ router.get('/ordemservico', paginas.listOrdemServico);
 
 router.get('/cadastro', paginas.listCadastro);
 
+router.get('/usuarios', usuario.listUser);
+
 router.post('/confLogin', login.logar);
 
-router.post('/usuarios/addUsuario', usuario.save);
+router.post('/usuarios/addUsuario', usuario.saveUser);
 
 
 router.get('/clientes', clientes.listClientes);
