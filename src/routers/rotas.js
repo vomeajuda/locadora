@@ -34,11 +34,18 @@ router.get('/ordemservico', paginas.listOrdemServico);
 
 router.get('/cadastro', paginas.listCadastro);
 
-router.get('/usuarios', usuario.listUser);
-
 router.post('/confLogin', login.logar);
 
+
+router.get('/usuarios', usuario.listUser);
+
 router.post('/usuarios/addUsuario', usuario.saveUser);
+
+router.get('/usuarios/next', usuario.nextUser);
+
+router.get('/usuarios/prev', usuario.prevUser);
+
+router.get('/usuarios/deleteUser', usuario.deleteUser);
 
 
 router.get('/clientes', clientes.listClientes);
