@@ -36,7 +36,20 @@ router.get('/cadastro', paginas.listCadastro);
 
 router.post('/confLogin', login.logar);
 
-router.post('/usuarios/addUsuario', usuario.save);
+
+router.get('/usuarios', usuario.listUser);
+
+router.post('/usuarios/addUsuario', usuario.saveUser);
+
+router.get('/usuarios/next', usuario.nextUser);
+
+router.get('/usuarios/prev', usuario.prevUser);
+
+router.get('/usuarios/deleteUser', usuario.deleteUser);
+
+router.get('/usuarios/editUser', usuario.editUser);
+
+router.post('/usuarios/updateUser', usuario.updateUser);
 
 
 router.get('/clientes', clientes.listClientes);

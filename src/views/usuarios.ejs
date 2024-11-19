@@ -15,7 +15,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/login">
+    <a class="navbar-brand " href="/elprimotors">
       <img src="assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item me-5 "></li>
+          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/funcionario?dpto=4">Funcionários</a>
+        </li>
+        <li class="nav-item mx-5">
+            <a class="nav-link active mx-2" href="/clientes?dpto=4">Clientes</a>
+        </li>
       </ul>
+      <span class="navbar-text me-3">
+        <a href="/login">
+          <img src="assets/Frame.svg" alt="">
+          Logout
+        </a>
+      </span>
     </div>
   </div>
 </nav>
@@ -40,7 +58,7 @@
         <div class="esq col-lg-4 col-md-12 border border-danger">
             <div class="row justify-content-between pt-5 ps-4">
                 <div class="col-sm-10 mb-5">
-                    <h2>Faça seu cadastro de <br>usuário</h2>
+                    <h2>Faça a edição do seu <br>usuário</h2>
                 </div>
                 <div class="col-sm-2 mb-5"> 
                     
@@ -51,7 +69,7 @@
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
           
-            Novo usuário:
+          Nome: <%= userAtual.usuarioLogin %>
           
          
         </h3>
@@ -63,7 +81,16 @@
 
  <div class="d-flex justify-content-center my-5">
 
-        
+    <a href="/usuarios/prev?userIndex=<%= userIndex %>" class="down btn btn-light px-3">
+      <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
+    </a>
+ 
+    <a href="/usuarios/deleteUser?usuarioLogin=<%= userAtual.usuarioLogin %>" class="down btn btn-light  px-5">
+      <img class="imgd" src="/assets/trash3.svg" alt="">
+    </a>
+    <a href="/usuarios/next?userIndex=<%= userIndex %>" class="down btn btn-light px-3">
+      <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
+    </a>
    
     
 </div> 
@@ -79,15 +106,15 @@
             </div>
          <div class="row justify-content-center ">
             <div class="col-md-4 col-sm-12">
-                <form action="/usuarios/addUsuario" method="post">
+                <form action="/usuarios/updateUser" method="post">
                 <div class="mt-5" >
                     <label for="cpf" class="form-label">Email:</label>
-                    <input type="text" name="usuarioLogin" class="form-control" id="cpf" placeholder="Digite o seu email" aria-describedby="emailHelp">
+                    <input type="text" name="usuarioLogin" class="form-control" id="cpf" placeholder="Digite o seu email" aria-describedby="emailHelp" value="<%= isEdit ? userAtual.usuarioLogin : '' %>" <%= isEdit ? 'readonly' : '' %>>
                   </div>
         
                   <div class="mt-3" >
                     <label for="Nome"  class="form-label">Senha:</label>
-                    <input type="text" maxlength="8" name="usuarioSenha" class="form-control" id="nome" placeholder="8 caracteres" aria-describedby="emailHelp">
+                    <input type="text" maxlength="8" name="usuarioSenha" class="form-control" id="nome" placeholder="8 caracteres" aria-describedby="emailHelp" value="<%= isEdit ? userAtual.usuarioSenha : '' %>">
                   </div>
                   
             </div>
@@ -96,22 +123,22 @@
                   <div class="mt-5" >
                     <label for="tel" class="form-label">Setor:</label>
                     <select name="usuarioSetor" class="form-select" aria-label="Default select example">
-                      <option value=""></option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
+                      <option value="" <%= !isEdit || !userAtual.usuarioSetor ? 'selected' : '' %>></option>
+                      <option value="1" <%= isEdit && userAtual.usuarioSetor == 1 ? 'selected' : '' %>>1</option>
+                      <option value="2" <%= isEdit && userAtual.usuarioSetor == 2 ? 'selected' : '' %>>2</option>
+                      <option value="3" <%= isEdit && userAtual.usuarioSetor == 3 ? 'selected' : '' %>>3</option>
+                      <option value="4" <%= isEdit && userAtual.usuarioSetor == 4 ? 'selected' : '' %>>4</option>
+                      <option value="5" <%= isEdit && userAtual.usuarioSetor == 5 ? 'selected' : '' %>>5</option>
                     </select>
                   </div>
                   <div class="mt-5" >
                     <label for="status" class="form-label">Status:</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="usuarioStatus"  id="inlineRadio1" value="1">
+                        <input class="form-check-input" type="radio" name="usuarioStatus"  id="inlineRadio1" value="1" <%= isEdit && userAtual.usuarioStatus == 1 ? 'checked' : '' %>>
                         <label class="form-check-label" for="inlineRadio1"> Sim</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="usuarioStatus" id="inlineRadio2" value="0">
+                        <input class="form-check-input" type="radio" name="usuarioStatus" id="inlineRadio2" value="0" <%= isEdit && userAtual.usuarioStatus == 0 ? 'checked' : '' %>>
                         <label class="form-check-label" for="inlineRadio2">Não</label>
                       </div>
                   </div>
@@ -121,7 +148,7 @@
                 <div class="container-sm d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
                   
-                    <a href="/login" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                    <a href="/usuarios" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
                   </form>
                  
 

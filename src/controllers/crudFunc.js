@@ -263,7 +263,7 @@ controller.editFunc = (req, res) => {
       });
   });
     
-}
+};
 
 controller.buscaFunc = (req, res) => {
     const { matricula } = req.query
