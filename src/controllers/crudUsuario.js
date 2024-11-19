@@ -104,4 +104,53 @@ controller.deleteUser = (req, res) => {
     });
 };
 
+controller.updateUser = (req, res) => {
+    const { usuarioLogin, usuarioSenha, usuarioSetor, usuarioStatus} = req.body;
+    
+    if (!usuarioLogin || !usuarioSenha || !usuarioSetor || !usuarioStatus) {
+        return res.status(400).send('Todos os campos são obrigatórios');
+    }
+
+    const query = `UPDATE usuarios SET usuarioSenha = ?, usuarioSetor = ?, usuarioStatus = ? WHERE usuarioLogin = ?`;
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(query, [usuarioSenha, usuarioSetor, usuarioStatus, usuarioLogin], (err, result) => {
+            if (err) {
+                return res.status(500).send('Erro ao atualizar o cliente');
+            }
+
+            res.redirect('/usuarios');
+        });
+    });
+};
+
+controller.editUser = (req, res) => { 
+    
+    const usuarioLogin = req.query.usuarioLogin;
+
+    req.getConnection((err, conn) => {
+      conn.query('SELECT * FROM usuarios WHERE usuarioLogin = ?', [usuarioLogin], (err, usuarios) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        // Verifica se o cliente foi encontrado
+        if (usuarios.length === 0) {
+            return res.status(404).send('Funcionario não encontrado');
+        }
+
+        res.render('usuarios', {
+            userAtual: usuarios[0],
+            isEdit: true,
+            userIndex: req.query.userIndex || 0
+        });
+      });
+  });
+    
+}
+
 module.exports = controller;

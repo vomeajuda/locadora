@@ -47,6 +47,10 @@ router.get('/usuarios/prev', usuario.prevUser);
 
 router.get('/usuarios/deleteUser', usuario.deleteUser);
 
+router.get('/usuarios/editUser', usuario.editUser);
+
+router.post('/usuarios/updateUser', usuario.updateUser);
+
 
 router.get('/clientes', clientes.listClientes);
 
