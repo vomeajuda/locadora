@@ -1,7 +1,7 @@
 const controller = {};
 
 exports.list = (req, res) => {
-    res.render('login');
+    res.render('login', {err: false});
 };
 
 exports.listBuscacli = (req, res) => {
@@ -45,7 +45,7 @@ exports.listElprimotorsCopa = (req, res) => {
 };
 
 exports.listLogin = (req, res) => {
-    res.render('login');
+    res.render('login', {err: false});
 };
 
 exports.listOrdemServico = (req, res) => {

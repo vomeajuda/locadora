@@ -29,10 +29,10 @@ controller.logar = (req, res) => {
             } else if (usuarioSetor === 5){
                 res.redirect('/elprimotorsCopa');
             } else {
-                res.redirect('/login');
+                res.redirect('/login', {err: false});
             }
         } else {
-            return res.status(401).send('Usuário ou senha incorretos');
+            return res.render('login', {err: true})
         }
     });
 });  
