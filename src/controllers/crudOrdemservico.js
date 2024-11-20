@@ -2,10 +2,10 @@ const controller = {}; //cria o método do controller
 
 //método para salvar a ordem de serviço
 controller.save = (req, res) => {
-    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus } = req.body;
+    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto } = req.body;
     const dpto = req.query.dpto;
     
-    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsKmRetirada || !OsStatus) {
+    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
