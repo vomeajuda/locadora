@@ -35,7 +35,7 @@ controller.save = (req, res) => {
 };
 
 // é todo para listar os ordem de servico e navegar entre eles
-controller.listordemservico = (req, res) => {
+controller.listOS = (req, res) => {
     const ordIndex = parseInt(req.query.ordIndex) || 0; // Pega o índice do ordem da query string, se existir
     const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
