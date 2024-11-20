@@ -35,7 +35,7 @@ controller.logar = (req, res) => {
             return res.render('login', {err: true})
         }
     });
-});  
+});
 };
 
 module.exports = controller;

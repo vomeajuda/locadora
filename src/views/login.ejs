@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
+  <% if (err) { %>
+    <script>
+      alert('Usuário ou senha incorreto');
+    </script>
+  <% } %>
 <!-- navbar -->
 
 <% if (err) { %>
@@ -55,7 +60,7 @@
                   </div>
                   <div class="input-group input-group-lg mt-3">
                     <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-                    <input id="senha" name="usuarioSenha" type="password" class="form-control"  placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    <input id="senha" name="usuarioSenha"  type="password" class="form-control"  placeholder="Senha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
                 <div class="form-check mt-3">
                   <input type="checkbox" class="form-check-input mb-3" id="lembrar">
