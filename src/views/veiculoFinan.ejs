@@ -141,10 +141,10 @@
                     <label for="cat" class="form-label">Categoria:</label>
                     <select name="veicCat" class="form-select"  aria-label="Default select example">
                       <option value="" <%= !isEdit || !veicAtual.veicCat ? 'selected' : '' %>>Escolha</option>
-                      <option value="1" <%= isEdit && veicAtual.veicCat == 1 ? 'selected' : '' %>>SUV</option>
-                      <option value="3" <%= isEdit && veicAtual.veicCat == 3 ? 'selected' : '' %>>Sedan</option>
-                      <option value="4" <%= isEdit && veicAtual.veicCat == 4 ? 'selected' : '' %>>Hatch</option>
-                      <option value="2" <%= isEdit && veicAtual.veicCat == 2 ? 'selected' : '' %>>Camionete</option>
+                      <option value="1" <%= isEdit && veicAtual.veicCat == 1 ? 'selected' : '' %>>Basico</option>
+                      <option value="3" <%= isEdit && veicAtual.veicCat == 3 ? 'selected' : '' %>>Luxo</option>
+                      <option value="4" <%= isEdit && veicAtual.veicCat == 4 ? 'selected' : '' %>>Especial</option>
+                      <option value="2" <%= isEdit && veicAtual.veicCat == 2 ? 'selected' : '' %>>Utilitario</option>
                     </select>
                   </div>
                   <div class="mt-3" >

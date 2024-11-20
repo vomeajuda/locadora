@@ -5,19 +5,19 @@ controller.save = (req, res) => {
     const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto } = req.body;
     const dpto = req.query.dpto;
     
-    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus || !OsValorPgto) {
+    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
-    const query = `INSERT INTO ordem_de_servico (OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO ordem_de_servico (OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        conn.query(query, [OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto], (err, result) => {
+        conn.query(query, [OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus], (err, result) => {
             if (err) {
                 return res.status(500).send('Erro ao salvar a ordem de serviço');
             }
@@ -35,7 +35,7 @@ controller.save = (req, res) => {
 };
 
 // é todo para listar os ordem de servico e navegar entre eles
-controller.listordemservico = (req, res) => {
+controller.listOS = (req, res) => {
     const ordIndex = parseInt(req.query.ordIndex) || 0; // Pega o índice do ordem da query string, se existir
     const dpto = req.query.dpto;
     req.getConnection((err, conn) => {
@@ -212,7 +212,7 @@ controller.edit = (req, res) => {
      
   
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM ordemservico WHERE OsNum = ?', [OsNum], (err, ordemservico) => {
+        conn.query('SELECT * FROM ordem_de_servico WHERE OsNum = ?', [OsNum], (err, ordemservico) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
             }

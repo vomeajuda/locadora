@@ -14,7 +14,7 @@
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
     <a class="navbar-brand" href="/elprimotors">
-      <img src="assets/Logo (1).svg" alt="" class="logo">
+      <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico?dpto=4">Ordens de serviço</a>
         </li>
         <li class="nav-item mx-5">
           <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
@@ -39,7 +39,7 @@
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
-            <img src="assets/Frame.svg" alt="">
+            <img src="/assets/Frame.svg" alt="">
             Logout
         </a>
     </span>
@@ -76,16 +76,15 @@
                   
                   <div class="mt-5" >
                     <label for="Nome" class="form-label"> <h5>Marca</h5></label>
-                    <p></p>
+                    <p><%= isSearch ? data[0].veicMarca : '' %></p>
                   </div>
                   <div class="mt-5" >
                     <label for="Cidade" class="form-label"><h5>Ano:</h5></label>
-                    
-                    <p></p>
+                    <p><%= isSearch ? data[0].veicAno : '' %></p>
                   </div>
                   <div class="mt-5" >
                     <label for="Sexo" class="form-label"><h5>Cor:</h5></label>
-                    <p></p>
+                    <p><%= isSearch ? data[0].veicCor : '' %></p>
                   </div>
             </div>
             <div class="texto2 col-md-3 col-sm-12 pb-5 my-5 pe-5">
@@ -96,17 +95,29 @@
               
               <div class="mt-5" >
                     <label for="data" class="form-label"><h5>Combustível:</h5> </label>
-                    <p></p>
+                    <p><%= isSearch ? data[0].veicComb : '' %></p>
                   </div>
                   
                   <div class="mt-5" >
-                    <label for="end" class="form-label"><h5>Categoria:</h5></label>
-                    
-                    <p></p>
+                    <label for="end" class="form-label"><h5>Categoria:</h5></label>                    
+                    <p>
+                      <%= isSearch 
+                          ? (data[0].veicCat === 1 
+                              ? 'Basico' 
+                              : data[0].veicCat === 2 
+                              ? 'Utilitario' 
+                              : data[0].veicCat === 3 
+                              ? 'Luxo' 
+                              : data[0].veicCat === 4 
+                              ? 'Especial' 
+                              : 'Categoria não definida') 
+                          : '' 
+                      %>
+                  </p>
                   </div>
                   <div class="mt-5" >
                     <label for="status" class="form-label"><h5>Status:</h5></label>
-                   <p></p>
+                   <p><%= isSearch ? data[0].veicStatusAlocado : '' %></p>
                   </div>
             </div>
             

@@ -70,10 +70,6 @@ exports.listLogin = (req, res) => {
     res.render('login', {err: false});
 };
 
-exports.listOrdemServico = (req, res) => {
-    res.render('ordemservico');
-}
-
 exports.listCadastro = (req, res) => {
     res.render('cadastro');
 }

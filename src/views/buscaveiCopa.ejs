@@ -63,45 +63,56 @@
             </div>
          <div class="row justify-content-center ">
             <div class="texto1 col-md-4 col-sm-12 pb-5 my-5 ps-5">
-                <div class="mt-5 text" >
-                    <label for="cpf" class="form-label"><h5> Placa:</h5></label>
-                    <p><%= isSearch ? data[0].veicPlaca : '' %></p>
-                  </div>
-                  
-                  <div class="mt-5" >
-                    <label for="Nome" class="form-label"> <h5>Marca</h5></label>
-                    <p></p>
-                  </div>
-                  <div class="mt-5" >
-                    <label for="Cidade" class="form-label"><h5>Ano:</h5></label>
-                    
-                    <p></p>
-                  </div>
-                  <div class="mt-5" >
-                    <label for="Sexo" class="form-label"><h5>Cor:</h5></label>
-                    <p></p>
-                  </div>
-            </div>
-            <div class="texto2 col-md-3 col-sm-12 pb-5 my-5 pe-5">
               <div class="mt-5 text" >
-                <label for="cpf" class="form-label"><h5> Modelo:</h5></label>
-                <p><%= isSearch ? data[0].veicModelo : '' %></p>
-              </div>  
+                <label for="cpf" class="form-label"><h5> Placa:</h5></label>
+                <p><%= isSearch ? data[0].veicPlaca : '' %></p>
+              </div>
               
               <div class="mt-5" >
-                    <label for="data" class="form-label"><h5>Combustível:</h5> </label>
-                    <p></p>
-                  </div>
-                  
-                  <div class="mt-5" >
-                    <label for="end" class="form-label"><h5>Categoria:</h5></label>
-                    
-                    <p></p>
-                  </div>
-                  <div class="mt-5" >
-                    <label for="status" class="form-label"><h5>Status:</h5></label>
-                   <p></p>
-                  </div>
+                <label for="Nome" class="form-label"> <h5>Marca</h5></label>
+                <p><%= isSearch ? data[0].veicMarca : '' %></p>
+              </div>
+              <div class="mt-5" >
+                <label for="Cidade" class="form-label"><h5>Ano:</h5></label>
+                <p><%= isSearch ? data[0].veicAno : '' %></p>
+              </div>
+              <div class="mt-5" >
+                <label for="Sexo" class="form-label"><h5>Cor:</h5></label>
+                <p><%= isSearch ? data[0].veicCor : '' %></p>
+              </div>
+        </div>
+        <div class="texto2 col-md-3 col-sm-12 pb-5 my-5 pe-5">
+          <div class="mt-5 text" >
+            <label for="cpf" class="form-label"><h5> Modelo:</h5></label>
+            <p><%= isSearch ? data[0].veicModelo : '' %></p>
+          </div>  
+          
+          <div class="mt-5" >
+                <label for="data" class="form-label"><h5>Combustível:</h5> </label>
+                <p><%= isSearch ? data[0].veicComb : '' %></p>
+              </div>
+              
+              <div class="mt-5" >
+                <label for="end" class="form-label"><h5>Categoria:</h5></label>                    
+                <p>
+                  <%= isSearch 
+                      ? (data[0].veicCat === 1 
+                          ? 'Basico' 
+                          : data[0].veicCat === 2 
+                          ? 'Utilitario' 
+                          : data[0].veicCat === 3 
+                          ? 'Luxo' 
+                          : data[0].veicCat === 4 
+                          ? 'Especial' 
+                          : 'Categoria não definida') 
+                      : '' 
+                  %>
+              </p>
+              </div>
+              <div class="mt-5" >
+                <label for="status" class="form-label"><h5>Status:</h5></label>
+               <p><%= isSearch ? data[0].veicStatusAlocado : '' %></p>
+              </div>
             </div>
             
             </div>
