@@ -102,4 +102,5 @@ router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
 
 
 
+
 module.exports = router;
