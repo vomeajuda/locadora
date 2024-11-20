@@ -31,8 +31,6 @@ router.get('/elprimotorsCopa', paginas.listElprimotorsCopa);
 
 router.get('/login', paginas.listLogin);
 
-router.get('/ordemservico', paginas.listOrdemServico);
-
 router.get('/cadastro', paginas.listCadastro);
 
 router.post('/confLogin', login.logar);
