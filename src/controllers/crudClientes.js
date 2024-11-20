@@ -307,6 +307,7 @@ controller.edit = (req, res) => {
 
 controller.busca = (req, res) => {
     const { cpf } = req.query;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
         if (err) {
@@ -324,11 +325,18 @@ controller.busca = (req, res) => {
                 if(clientes.length === 0) {
                     return res.status(404).send('Nenhum cliente encontrado');
                 }
-
-                res.render('buscacli', {
-                    data: clientes,
-                    isSearch: true,
-                });
+                
+                if (dpto == 4){
+                    res.render('buscacli', {
+                        data: clientes,
+                        isSearch: true,
+                    });
+                } else if (dpto == 5){
+                    res.render('buscacliCopa', {
+                        data: clientes,
+                        isSearch: true,
+                    });
+                }
             }
         );
     });

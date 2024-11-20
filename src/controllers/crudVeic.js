@@ -250,4 +250,41 @@ controller.editVeic = (req, res) => {
     
 }
 
+controller.buscaVeic = (req, res) => {
+    const { placa } = req.query;
+    const dpto = req.query.dpto;
+
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).send('Erro ao conectar ao banco de dados');
+        }
+
+        conn.query(
+            'SELECT * FROM veiculos WHERE veicPlaca = ?',
+            [placa],
+            (err, veiculos) => {
+                if (err) {
+                    return res.status(500).send('Erro ao consultar os veiculos');
+                }
+
+                if(veiculos.length === 0) {
+                    return res.status(404).send('Nenhum veiculo encontrado');
+                }
+                
+                if (dpto == 4){
+                    res.render('buscavei', {
+                        data: veiculos,
+                        isSearch: true,
+                    });
+                } else if (dpto == 5){
+                    res.render('buscaveiCopa', {
+                        data: veiculos,
+                        isSearch: true,
+                    });
+                }
+            }
+        );
+    });
+};
+
 module.exports = controller;

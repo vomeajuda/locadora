@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
+    <a class="navbar-brand " href="/elprimotorsCopa">
       <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/buscavei?dpto=4">Buscar veículos</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/buscavei?dpto=5">Buscar veículos</a>
         </li>
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/buscafun?dpto=4">Buscar funcionários</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/buscafun?dpto=5">Buscar funcionários</a>
         </li>
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/buscacli?dpto=4">Buscar clientes</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/buscacli?dpto=5">Buscar clientes</a>
         </li>
       </ul>
       <span class="navbar-text me-3">
@@ -57,7 +57,7 @@
             <div class="container d-flex justify-content-center mt-5">
                 <div class="input-group input-group-lg mt-3">
                     <span class="input-group-text">
-                        <a id="btnSearch" href="/funcionario/buscafun?matricula=&dpto=4" class="bi bi-search"></a>
+                        <a id="btnSearch" href="/funcionario/buscafun?matricula=&dpto=5" class="bi bi-search"></a>
                     </span>
                     <input name="campoMat" type="text" class="form-control"  placeholder="Pesquise um funcionário pela matricula ou nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
@@ -103,7 +103,6 @@
             </div>
             
             </div>
-
                
         </div>
    
@@ -216,7 +215,7 @@
   campoMat.addEventListener('input', () => {
       event.preventDefault();
       const matricula = campoMat.value.trim(); // Captura o valor e remove espaços extras
-      btnSearch.href = `/funcionario/buscafun?matricula=${encodeURIComponent(matricula)}&dpto=4`;
+      btnSearch.href = `/funcionario/buscafun?matricula=${encodeURIComponent(matricula)}&dpto=5`;
   });
 </script>
 

@@ -4,15 +4,29 @@ exports.list = (req, res) => {
 };
 
 exports.listBuscacli = (req, res) => {
-    res.render('buscacli', {
-        isSearch: false,
-    });
+    const dpto = req.query.dpto;
+    if (dpto == 4){
+        res.render('buscacli', {
+            isSearch: false,
+        });
+    } else if (dpto == 5){
+        res.render('buscacliCopa', {
+            isSearch: false,
+        });
+    } else {return res.status(404).send("Not found")}
 };
 
 exports.listBuscafun = (req, res) => {
-    res.render('buscafun', {
-        isSearch: false,
-    });
+    const dpto = req.query.dpto;
+    if (dpto == 4){
+        res.render('buscafun', {
+            isSearch: false,
+        });
+    } else if (dpto == 5){
+        res.render('buscafunCopa', {
+            isSearch: false,
+        });
+    } else {return res.status(404).send("Not found")}
 };
 
 exports.listBuscaord = (req, res) => {
@@ -20,7 +34,16 @@ exports.listBuscaord = (req, res) => {
 };
 
 exports.listBuscavei = (req, res) => {
-    res.render('buscavei');
+    const dpto = req.query.dpto;
+    if (dpto == 4){
+        res.render('buscavei', {
+            isSearch: false,
+        });
+    } else if (dpto == 5){
+        res.render('buscaveiCopa', {
+            isSearch: false,
+        });
+    } else {return res.status(404).send("Not found")}
 };
 
 exports.listElprimotors = (req, res) => {
