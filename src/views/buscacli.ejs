@@ -23,17 +23,14 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-5 ">
-          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
+          <a class="nav-link active mx-2" aria-current="page" href="/buscavei?dpto=4">Buscar veículos</a>
         </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/veiculo">Veículos</a>
+        <li class="nav-item me-5 ">
+          <a class="nav-link active mx-2" aria-current="page" href="/buscafun?dpto=4">Buscar funcionários</a>
         </li>
-        <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/funcionario">Funcionários</a>
+        <li class="nav-item me-5 ">
+          <a class="nav-link active mx-2" aria-current="page" href="/buscacli?dpto=4">Buscar clientes</a>
         </li>
-        <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/clientes"> Clientes </a>
-          </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
@@ -60,9 +57,9 @@
             <div class="container d-flex justify-content-center mt-5">
                 <div class="input-group input-group-lg mt-3 ">
                     <span class="input-group-text">
-                        <a id="btnSearch" href="/clientes/buscacli?cpf=" class="bi bi-search"></a>
+                        <a id="btnSearch" href="/clientes/buscacli?cpf=&dpto=4" class="bi bi-search"></a>
                     </span>
-                    <input name="campoCPF" type="text" class="form-control"  placeholder="Pesquise um cliente pelo CPF" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    <input name="campoCPF" type="text" class="form-control"  placeholder="Pesquise um cliente pelo CPF ou nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
             </div>
          <div class="row justify-content-center ">
@@ -116,14 +113,6 @@
             
             </div>
 
-               <div class="container d-flex justify-content-center">
-                <button class="down btn btn-light px-3 mx-1 mb-5 ">
-                  <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
-              </button>
-              <button class="down btn btn-light px-3 mx-1 mb-5">
-                <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
-            </button>
-               </div>
         </div>
    
         <!-- fim da parte da esquerda -->
@@ -234,7 +223,7 @@
   campoCPF.addEventListener('input', () => {
       event.preventDefault();
       const cpf = campoCPF.value.trim(); // Captura o valor e remove espaços extras
-      btnSearch.href = `/clientes/buscacli?cpf=${encodeURIComponent(cpf)}`;
+      btnSearch.href = `/clientes/buscacli?cpf=${encodeURIComponent(cpf)}&dpto=4`;
   });
 </script>
 

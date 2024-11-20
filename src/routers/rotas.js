@@ -100,6 +100,8 @@ router.get('/veiculo/editVeiculo', veiculos.editVeic);
 
 router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
 
+router.get("/veiculo/buscavei", veiculos.buscaVeic);
+
 
 
 module.exports = router;
