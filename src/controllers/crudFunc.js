@@ -266,25 +266,40 @@ controller.editFunc = (req, res) => {
 };
 
 controller.buscaFunc = (req, res) => {
-    const { matricula } = req.query
+    const { matricula } = req.query;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        // Consulta todos os funcionarios no banco de dados
-        conn.query('SELECT * FROM funcionarios WHERE funcMatricula = ?', [matricula] , (err, funcionarios) => {
-            if (err) {
-                return res.status(500).send('Erro ao consultar os funcionarios');
-            }
+        conn.query(
+            'SELECT * FROM funcionarios WHERE funcMatricula = ? OR funcNome = ?',
+            [matricula, matricula],
+            (err, funcionarios) => {
+                if (err) {
+                    return res.status(500).send('Erro ao consultar os funcionarios');
+                }
 
-            res.render('buscafun', {
-                data: funcionarios,
-                isSearch: true,
-            })
-        })
-    })
-}
+                if(funcionarios.length === 0) {
+                    return res.status(404).send('Nenhum funcionario encontrado');
+                }
+                
+                if (dpto == 4){
+                    res.render('buscafun', {
+                        data: funcionarios,
+                        isSearch: true,
+                    });
+                } else if (dpto == 5){
+                    res.render('buscafunCopa', {
+                        data: funcionarios,
+                        isSearch: true,
+                    });
+                }
+            }
+        );
+    });
+};
 
 module.exports = controller;

@@ -7,6 +7,7 @@ const login = require('../controllers/crudLogin');
 const usuario = require('../controllers/crudUsuario');
 const funcionarios = require('../controllers/crudFunc');
 const veiculos = require('../controllers/crudVeic');
+const ordem = require('../controllers/crudOrdemservico');
 
 router.get('/', paginas.list);
 
@@ -29,8 +30,6 @@ router.get('/elprimotorsFinan', paginas.listElprimotorsFinan);
 router.get('/elprimotorsCopa', paginas.listElprimotorsCopa);
 
 router.get('/login', paginas.listLogin);
-
-router.get('/ordemservico', paginas.listOrdemServico);
 
 router.get('/cadastro', paginas.listCadastro);
 
@@ -100,6 +99,22 @@ router.get('/veiculo/editVeiculo', veiculos.editVeic);
 
 router.post('/veiculo/updateVeiculo', veiculos.updateVeic);
 
+router.get("/veiculo/buscavei", veiculos.buscaVeic);
+
+
+router.post('/ordemservico/addOS', ordem.save);
+
+router.get('/ordemservico', ordem.listOS);
+
+router.get('/ordemservico/deleteOS', ordem.delete);
+
+router.get('/ordemservico/next', ordem.next);
+
+router.get('/ordemservico/prev', ordem.prev);
+
+router.get('/ordemservico/editOS', ordem.edit);
+
+router.post('/ordemservico/updateOS', ordem.update);
 
 
 module.exports = router;

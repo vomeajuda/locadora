@@ -306,26 +306,41 @@ controller.edit = (req, res) => {
 };
 
 controller.busca = (req, res) => {
-    const { cpf } = req.query
+    const { cpf } = req.query;
+    const dpto = req.query.dpto;
 
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        // Consulta todos os clientes no banco de dados
-        conn.query('SELECT * FROM clientes WHERE clienteCPF = ?', [cpf] , (err, clientes) => {
-            if (err) {
-                return res.status(500).send('Erro ao consultar os clientes');
-            }
+        conn.query(
+            'SELECT * FROM clientes WHERE clienteCPF = ? OR clienteNome = ?',
+            [cpf, cpf],
+            (err, clientes) => {
+                if (err) {
+                    return res.status(500).send('Erro ao consultar os clientes');
+                }
 
-            res.render('buscacli', {
-                data: clientes,
-                isSearch: true,
-            })
-        })
-    })
-}
+                if(clientes.length === 0) {
+                    return res.status(404).send('Nenhum cliente encontrado');
+                }
+                
+                if (dpto == 4){
+                    res.render('buscacli', {
+                        data: clientes,
+                        isSearch: true,
+                    });
+                } else if (dpto == 5){
+                    res.render('buscacliCopa', {
+                        data: clientes,
+                        isSearch: true,
+                    });
+                }
+            }
+        );
+    });
+};
 
   
 module.exports = controller;

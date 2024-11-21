@@ -14,8 +14,8 @@
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/elprimotors">
-      <img src="/assets/Logo (1).svg" alt="" class="logo">
+    <a class="navbar-brand" href="/elprimotors">
+      <img src="assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,21 +26,27 @@
           <a class="nav-link active mx-2" aria-current="page" href="/ordemservico">Ordens de serviço</a>
         </li>
         <li class="nav-item mx-5">
-          <a class="nav-link active mx-2" href="/clientes?dpto=4">Clientes</a>
+          <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
         </li>
         <li class="nav-item mx-5">
           <a class="nav-link active mx-2" href="/funcionario?dpto=4">Funcionários</a>
         </li>
         <li class="nav-item mx-5">
-            <a class="nav-link active mx-2" href="/buscavei">Buscar veículos</a>
-          </li>
+            <a class="nav-link active mx-2" href="/clientes?dpto=4">Clientes</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/buscavei?dpto=4">Buscar Veículos</a>
+        </li>
       </ul>
       <span class="navbar-text me-3">
         <a href="/login">
-          <img src="/assets/Frame.svg" alt="">
-          Logout
+            <img src="assets/Frame.svg" alt="">
+            Logout
         </a>
-      </span>
+    </span>
     </div>
   </div>
 </nav>
@@ -143,10 +149,10 @@
                     <label for="cat" class="form-label">Categoria:</label>
                     <select name="veicCat" class="form-select"  aria-label="Default select example">
                       <option value="" <%= !isEdit || !veicAtual.veicCat ? 'selected' : '' %>>Escolha</option>
-                      <option value="1" <%= isEdit && veicAtual.veicCat == 1 ? 'selected' : '' %>>SUV</option>
-                      <option value="3" <%= isEdit && veicAtual.veicCat == 3 ? 'selected' : '' %>>Sedan</option>
-                      <option value="4" <%= isEdit && veicAtual.veicCat == 4 ? 'selected' : '' %>>Hatch</option>
-                      <option value="2" <%= isEdit && veicAtual.veicCat == 2 ? 'selected' : '' %>>Camionete</option>
+                      <option value="1" <%= isEdit && veicAtual.veicCat == 1 ? 'selected' : '' %>>Basico</option>
+                      <option value="3" <%= isEdit && veicAtual.veicCat == 3 ? 'selected' : '' %>>Luxo</option>
+                      <option value="4" <%= isEdit && veicAtual.veicCat == 4 ? 'selected' : '' %>>Especial</option>
+                      <option value="2" <%= isEdit && veicAtual.veicCat == 2 ? 'selected' : '' %>>Utilitario</option>
                     </select>
                   </div>
                   <div class="mt-3" >
