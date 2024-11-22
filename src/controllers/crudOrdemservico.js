@@ -2,7 +2,7 @@ const controller = {}; //cria o método do controller
 
 //método para salvar a ordem de serviço
 controller.save = (req, res) => {
-    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto } = req.body;
+    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus } = req.body;
     const dpto = req.query.dpto;
     
     if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus) {
@@ -38,10 +38,23 @@ controller.save = (req, res) => {
 controller.listOS = (req, res) => {
     const ordIndex = parseInt(req.query.ordIndex) || 0; // Pega o índice do ordem da query string, se existir
     const dpto = req.query.dpto;
+    let auxVeiculos, auxFuncionarios, auxClientes;
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
+
+        conn.query('SELECT * FROM veiculos', (err, veiculos) => {
+            auxVeiculos = veiculos;
+        });
+
+        conn.query('SELECT * FROM funcionarios', (err, funcionarios) => {
+            auxFuncionarios = funcionarios;
+        });
+
+        conn.query('SELECT * FROM clientes', (err, clientes) => {
+            auxClientes = clientes;
+        });
 
         // Consulta todos os ordem de servico no banco de dados
         conn.query('SELECT * FROM ordem_de_servico', (err,ordemservico)  => {
@@ -57,8 +70,10 @@ controller.listOS = (req, res) => {
                 data: ordemservico,
                 ordAtual: ord,
                 ordIndex: ordIndex,
-                isEdit: false
-                
+                isEdit: false,
+                clientes: auxClientes,
+                funcionarios: auxFuncionarios,
+                veiculos: auxVeiculos
                 });
             
             }
@@ -67,8 +82,10 @@ controller.listOS = (req, res) => {
                 data: ordemservico,
                 ordAtual: ord,
                 ordIndex: ordIndex,
-                isEdit: false
-                
+                isEdit: false,
+                clientes: auxClientes,
+                funcionarios: auxFuncionarios,
+                veiculos: auxVeiculos
                 });
 
             }else{
@@ -173,23 +190,23 @@ controller.delete = (req, res) => {
 
 //método para editar o ord
 controller.update = (req, res) => {
-    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto } = req.body;
+    const { OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus } = req.body;
     const dpto = req.query.dpto;
 
-    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus || !OsValorPgto) {
+    if (!OsNum || !OsFuncMat || !OsClienteCPF || !OsVeicPlaca || !OsDataRetirada || !OsDataDevolucao || !OsKmRetirada || !OsKmDevolucao || !OsStatus) {
         return res.status(400).send('Todos os campos são obrigatórios');
     }
 
-    const query = `UPDATE ordem_de_servico SET OsFuncMat = ?, OsClienteCPF = ?, OsVeicPlaca = ?, OsDataRetirada = ?, OsDataDevolucao = ?, OsKmRetirada = ?, OsKmDevolucao = ?, OsStatus = ?, OsValorPgto = ? WHERE OsNum = ?`;
+    const query = `UPDATE ordem_de_servico SET OsFuncMat = ?, OsClienteCPF = ?, OsVeicPlaca = ?, OsDataRetirada = ?, OsDataDevolucao = ?, OsKmRetirada = ?, OsKmDevolucao = ?, OsStatus = ? WHERE OsNum = ?`;
 
     req.getConnection((err, conn) => {
         if (err) {
             return res.status(500).send('Erro ao conectar ao banco de dados');
         }
 
-        conn.query(query, [OsNum, OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsValorPgto], (err, result) => {
+        conn.query(query, [OsFuncMat, OsClienteCPF, OsVeicPlaca, OsDataRetirada, OsDataDevolucao, OsKmRetirada, OsKmDevolucao, OsStatus, OsNum], (err, result) => {
             if (err) {
-                return res.status(500).send('Erro ao atualizar a ordem de serviço');
+                return res.status(500).send('' + err);
             }
 
             if (dpto == 1){
@@ -209,9 +226,22 @@ controller.edit = (req, res) => {
     
     const OsNum = req.query.OsNum;
     const dpto = req.query.dpto;
-     
+    let auxVeiculos, auxFuncionarios, auxClientes;
   
     req.getConnection((err, conn) => {
+
+        conn.query('SELECT * FROM veiculos', (err, veiculos) => {
+            auxVeiculos = veiculos;
+        });
+
+        conn.query('SELECT * FROM funcionarios', (err, funcionarios) => {
+            auxFuncionarios = funcionarios;
+        });
+
+        conn.query('SELECT * FROM clientes', (err, clientes) => {
+            auxClientes = clientes;
+        });
+
         conn.query('SELECT * FROM ordem_de_servico WHERE OsNum = ?', [OsNum], (err, ordemservico) => {
             if (err) {
                 return res.status(500).send('Erro ao conectar ao banco de dados');
@@ -226,14 +256,20 @@ controller.edit = (req, res) => {
                 res.render('ordemservicoAtend', {
                     ordAtual: ordemservico[0],
                     isEdit: true,
-                    ordIndex: req.query.ordIndex || 0
+                    ordIndex: req.query.ordIndex || 0,
+                    clientes: auxClientes,
+                    funcionarios: auxFuncionarios,
+                    veiculos: auxVeiculos
                 });
             }
             else if (dpto == 4){
                 res.render('ordemservico', {
                     ordAtual: ordemservico[0],
                     isEdit: true,
-                    ordIndex: req.query.ordIndex || 0
+                    ordIndex: req.query.ordIndex || 0,
+                    clientes: auxClientes,
+                    funcionarios: auxFuncionarios,
+                    veiculos: auxVeiculos
                 });
             }else {return res.status(404).send("Not Found")}
         });
