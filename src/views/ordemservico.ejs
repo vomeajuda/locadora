@@ -121,11 +121,27 @@
                   
                   <div class="mt-3" >
                     <label for="Nome" class="form-label">Matricula do funcionário:</label>
-                    <input name="OsFuncMat" type="text" class="form-control" id="nome" placeholder="Digite a matricula do funcionário" aria-describedby="emailHelp" value="<%= isEdit ? ordAtual.OsFuncMat : '' %>">
+                    <select name="OsFuncMat" class="form-select"  aria-label="Default select example">
+                      <option value=""></option>
+                      <% funcionarios.forEach(funcionario => { %>
+                        <option value="<%= funcionario.funcMatricula %>"
+                          <%= isEdit && funcionario.funcMatricula == ordAtual.OsFuncMat ? 'selected' : '' %> >
+                          <%= funcionario.funcMatricula %>
+                        </option>
+                      <% }); %>
+                    </select>
                   </div>
                   <div class="mt-3" >
                     <label for="Cidade" class="form-label">CPF do cliente:</label>
-                    <input name="OsClienteCPF" type="text" class="form-control" id="nome" placeholder="###.###.###-##" aria-describedby="emailHelp" value="<%= isEdit ? ordAtual.OsClienteCPF : '' %>">
+                    <select name="OsClienteCPF" class="form-select"  aria-label="Default select example">
+                      <option value=""></option>
+                      <% clientes.forEach(cliente => { %>
+                        <option value="<%= cliente.clienteCPF %>"
+                          <%= isEdit && cliente.clienteCPF == ordAtual.OsClienteCPF ? 'selected' : '' %> >
+                          <%= cliente.clienteCPF %>
+                        </option>
+                      <% }); %>
+                    </select>
                   </div>
                   <div class="mt-3" >
                     <label for="Sexo" class="form-label">Km de retirada:</label>
@@ -138,7 +154,15 @@
              
                 <div class="mt-5" >
                     <label for="cpf" class="form-label">Placa do veículo:</label>
-                    <input name="OsVeicPlaca" type="text" class="form-control" id="cpf" placeholder="Digite a placa do veículo" aria-describedby="emailHelp" value="<%= isEdit ? ordAtual.OsVeicPlaca : '' %>">
+                    <select name="OsVeicPlaca" class="form-select"  aria-label="Default select example">
+                      <option value=""></option>
+                      <% veiculos.forEach(veiculo => { %>
+                        <option value="<%= veiculo.veicPlaca %>"
+                          <%= isEdit && veiculo.veicPlaca == ordAtual.OsVeicPlaca ? 'selected' : '' %> >
+                          <%= veiculo.veicPlaca %>
+                        </option>
+                      <% }); %>
+                    </select>
                   </div>
                   
                   <div class="mt-3" >
