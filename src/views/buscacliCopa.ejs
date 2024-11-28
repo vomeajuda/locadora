@@ -210,15 +210,24 @@
 </body>
 
 <script>
-  // Seleciona o botão e o campo de matrícula
   const btnSearch = document.getElementById('btnSearch');
   const campoCPF = document.querySelector('input[name="campoCPF"]');
 
-  // Adiciona um evento para atualizar o href do botão
-  campoCPF.addEventListener('input', () => {
+  function redirecionar() {
+      const cpf = campoCPF.value.trim();
+      window.location.href = `/clientes/buscacli?cpf=${encodeURIComponent(cpf)}&dpto=4`;
+  }
+
+  btnSearch.addEventListener('click', (event) => {
       event.preventDefault();
-      const cpf = campoCPF.value.trim(); // Captura o valor e remove espaços extras
-      btnSearch.href = `/clientes/buscacli?cpf=${encodeURIComponent(cpf)}&dpto=5`;
+      redirecionar();
+  });
+
+  campoCPF.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+          redirecionar();
+      }
   });
 </script>
 

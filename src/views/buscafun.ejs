@@ -214,15 +214,24 @@
 </body>
 
 <script>
-  // Seleciona o botão e o campo de matrícula
   const btnSearch = document.getElementById('btnSearch');
   const campoMat = document.querySelector('input[name="campoMat"]');
 
-  // Adiciona um evento para atualizar o href do botão
-  campoMat.addEventListener('input', () => {
+  function redirecionar() {
+      const matricula = campoMat.value.trim();
+      window.location.href = `/funcionario/buscafun?matricula=${encodeURIComponent(matricula)}&dpto=4`;
+  }
+
+  btnSearch.addEventListener('click', (event) => {
       event.preventDefault();
-      const matricula = campoMat.value.trim(); // Captura o valor e remove espaços extras
-      btnSearch.href = `/funcionario/buscafun?matricula=${encodeURIComponent(matricula)}&dpto=4`;
+      redirecionar();
+  });
+
+  campoMat.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+          redirecionar();
+      }
   });
 </script>
 

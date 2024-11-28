@@ -218,15 +218,24 @@
 </body>
 
 <script>
-  // Seleciona o botão e o campo de matrícula
   const btnSearch = document.getElementById('btnSearch');
   const campoPlaca = document.querySelector('input[name="campoPlaca"]');
 
-  // Adiciona um evento para atualizar o href do botão
-  campoPlaca.addEventListener('input', () => {
+  function redirecionar() {
+      const placa = campoPlaca.value.trim();
+      window.location.href = `/veiculo/buscavei?placa=${encodeURIComponent(placa)}&dpto=4`;
+  }
+
+  btnSearch.addEventListener('click', (event) => {
       event.preventDefault();
-      const placa = campoPlaca.value.trim(); // Captura o valor e remove espaços extras
-      btnSearch.href = `/veiculo/buscavei?placa=${encodeURIComponent(placa)}&dpto=5`;
+      redirecionar();
+  });
+
+  campoPlaca.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+          redirecionar();
+      }
   });
 </script>
 </html>
