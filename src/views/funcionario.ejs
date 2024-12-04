@@ -82,18 +82,18 @@
  <div class="d-flex justify-content-center my-5">
 
         
-        <a href="/funcionario/prev?funcIndex=<%= funcIndex %>" class="down btn btn-light px-3">
+        <a href="/funcionario/prev?funcIndex=<%= funcIndex %>&dpto=4" class="down btn btn-light px-3">
             <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
         </a>
-        <a href="/funcionario/editFunc/<%=funcAtual.funcMatricula %>" class="down btn btn-light px-5">
+        <a href="/funcionario/editFunc?<%=funcAtual.funcMatricula %>&dpto=4" class="down btn btn-light px-5">
             <img class="imgd" src="/assets/pencil-square.svg" alt="">
         </a>
          
          
-        <a href="/funcionario/deleteFunc/<%= funcAtual.funcMatricula %>" class="down btn btn-light  px-5">
+        <a href="/funcionario/deleteFunc?<%= funcAtual.funcMatricula %>&dpto=4" class="down btn btn-light  px-5">
             <img class="imgd" src="/assets/trash3.svg" alt="">
         </a>
-        <a href="/funcionario/next?funcIndex=<%= funcIndex %>" class="down btn btn-light px-3">
+        <a href="/funcionario/next?funcIndex=<%= funcIndex %>&dpto=4" class="down btn btn-light px-3">
           <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
       </a>
        
