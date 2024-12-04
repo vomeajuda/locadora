@@ -29,10 +29,6 @@ exports.listBuscafun = (req, res) => {
     } else {return res.status(404).send("Not found")}
 };
 
-exports.listBuscaord = (req, res) => {
-    res.render('buscaord');
-};
-
 exports.listBuscavei = (req, res) => {
     const dpto = req.query.dpto;
     if (dpto == 4){

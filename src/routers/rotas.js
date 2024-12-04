@@ -15,8 +15,6 @@ router.get('/buscacli', paginas.listBuscacli);
 
 router.get('/buscafun', paginas.listBuscafun);
 
-router.get('/buscaord', paginas.listBuscaord);
-
 router.get('/buscavei', paginas.listBuscavei);
 
 router.get('/elprimotors', paginas.listElprimotors);
