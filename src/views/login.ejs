@@ -142,11 +142,54 @@
  
 </footer>
 
-
-
-
-
-    <script src="/js/login.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
+<script>
+  document.querySelector('form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+  
+      const form = event.target;
+      const usuarioLogin = form.usuarioLogin.value;
+      const usuarioSenha = form.usuarioSenha.value;
+  
+      try {
+          const response = await fetch('/confLogin', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ usuarioLogin, usuarioSenha })
+          });
+  
+          const result = await response.json();
+  
+          if (result.success) {
+              localStorage.setItem('usuarioSetor', result.usuarioSetor);
+              switch (result.usuarioSetor) {
+                  case 1:
+                      window.location.href = '/elprimotorsAtend';
+                      break;
+                  case 2:
+                      window.location.href = '/elprimotorsAdm';
+                      break;
+                  case 3:
+                      window.location.href = '/elprimotorsFinan';
+                      break;
+                  case 4:
+                      window.location.href = '/elprimotors';
+                      break;
+                  case 5:
+                      window.location.href = '/elprimotorsCopa';
+                      break;
+                  default:
+                      window.location.href = '/login';
+              }
+          } else {
+              alert(result.message); // Exibe mensagem de erro
+          }
+      } catch (error) {
+          alert('Erro ao fazer login');
+      }
+  });
+  </script>  
+
 </html>
