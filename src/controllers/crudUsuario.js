@@ -8,7 +8,7 @@ controller.saveUser = (req, res) =>{
         if (err) {
             res.json(err);
         }
-        res.redirect('/');
+        res.redirect('/usuarios');
         });
     });
 };
@@ -32,7 +32,7 @@ controller.listUser = (req, res) => {
                 data: usuarios,  // Passa todos os funcionarios para o template
                 userAtual: usuario,
                 userIndex: userIndex,
-                isEdit: true
+                isEdit: false
             });
         });
     });
@@ -140,7 +140,7 @@ controller.editUser = (req, res) => {
 
         // Verifica se o cliente foi encontrado
         if (usuarios.length === 0) {
-            return res.status(404).send('Funcionario não encontrado');
+            return res.status(404).send('Usuario não encontrado');
         }
 
         res.render('usuarios', {
