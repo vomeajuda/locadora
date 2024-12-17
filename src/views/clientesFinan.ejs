@@ -11,6 +11,14 @@
 </thead>
 <tbody class="d-flex flex-column min-vh-100">
 
+  <script>
+    const usuarioSetor = localStorage.getItem('usuarioSetor');
+    if (usuarioSetor != 3){
+      alert("Departamento errado");
+      window.location.href = "/login";
+    }
+  </script>
+
 <!-- navbar -->
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >

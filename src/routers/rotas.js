@@ -8,6 +8,7 @@ const usuario = require('../controllers/crudUsuario');
 const funcionarios = require('../controllers/crudFunc');
 const veiculos = require('../controllers/crudVeic');
 const ordem = require('../controllers/crudOrdemservico');
+const categoria = require('../controllers/crudCategoria');
 
 router.get('/', paginas.list);
 
@@ -114,5 +115,13 @@ router.get('/ordemservico/editOS', ordem.edit);
 
 router.post('/ordemservico/updateOS', ordem.update);
 
+
+router.get('/categorias', categoria.listCat);
+
+router.get('/categorias/next', categoria.nextCat);
+
+router.get('/categorias/prev', categoria.prevCat);
+
+router.post('/categorias/updateCat', categoria.updateCat);
 
 module.exports = router;

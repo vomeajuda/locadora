@@ -6,24 +6,56 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/usuario.css">
+    <link rel="stylesheet" href="/css/usuario.css">
 
 </thead>
 <tbody class="d-flex flex-column min-vh-100">
+
+  <script>
+    const usuarioSetor = localStorage.getItem('usuarioSetor');
+    if (usuarioSetor != 4){
+      alert("Departamento errado");
+      window.location.href = "/login";
+    }
+  </script>
 
 <!-- navbar -->
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark" >
   <div class="container-fluid">
-    <a class="navbar-brand " href="/login">
-      <img src="assets/Logo (1).svg" alt="" class="logo">
+    <a class="navbar-brand" href="/elprimotors">
+      <img src="/assets/Logo (1).svg" alt="" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item me-5 ">
+          <a class="nav-link active mx-2" aria-current="page" href="/ordemservico?dpto=4">Ordens de serviço</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/veiculo?dpto=4">Veículos</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/funcionario?dpto=4">Funcionários</a>
+        </li>
+        <li class="nav-item mx-5">
+            <a class="nav-link active mx-2" href="/clientes?dpto=4">Clientes</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item mx-5">
+          <a class="nav-link active mx-2" href="/categorias">Categorias</a>
+        </li>
       </ul>
+      <span class="navbar-text me-3">
+        <a href="/login">
+            <img src="/assets/Frame.svg" alt="">
+            Logout
+        </a>
+    </span>
     </div>
   </div>
 </nav>
@@ -40,7 +72,7 @@
         <div class="esq col-lg-4 col-md-12 border border-danger">
             <div class="row justify-content-between pt-5 ps-4">
                 <div class="col-sm-10 mb-5">
-                    <h2>Faça seu cadastro de <br>usuário</h2>
+                    <h2>Faça a edição da sua <br>categoria</h2>
                 </div>
                 <div class="col-sm-2 mb-5"> 
                     
@@ -51,19 +83,24 @@
        <div class="d-flex justify-content-center mt-5">
         <h3 class="mb-5">
           
-            Novo usuário:
+          Nome: <%= catAtual.CatNome %>
           
          
         </h3>
        </div>
        <div class="d-flex justify-content-center">
-        <img id="redondo" src="assets/person-circle.svg" alt="">
+        <img id="redondo" src="/assets/person-circle.svg" alt="">
        </div>
 
 
  <div class="d-flex justify-content-center my-5">
 
-        
+    <a href="/categorias/prev?catIndex=<%= catIndex %>" class="down btn btn-light px-3">
+      <img class="imgd" src="/assets/caret-left-fill.svg" alt="">
+    </a>
+    <a href="/categorias/next?catIndex=<%= catIndex %>" class="down btn btn-light px-3">
+      <img class="imgd" src="/assets/caret-right-fill.svg" alt="">
+    </a>
    
     
 </div> 
@@ -79,41 +116,23 @@
             </div>
          <div class="row justify-content-center ">
             <div class="col-md-4 col-sm-12">
-                <form action="/usuarios/addUsuario" method="post">
+                <form action="<%= '/categorias/updateCat' %>" method="post">
                 <div class="mt-5" >
-                    <label for="cpf" class="form-label">Email:</label>
-                    <input type="text" name="usuarioLogin" class="form-control" id="cpf" placeholder="Digite o seu email" aria-describedby="emailHelp">
+                    <label for="cpf" class="form-label">Código:</label>
+                    <input type="text" name="CatCod" class="form-control" id="cpf" placeholder="Digite o código da categoria" aria-describedby="emailHelp" value="<%= isEdit ? catAtual.CatCod : '' %>" <%= isEdit ? 'readonly' : '' %>>
                   </div>
         
                   <div class="mt-3" >
-                    <label for="Nome"  class="form-label">Senha:</label>
-                    <input type="text" maxlength="8" name="usuarioSenha" class="form-control" id="nome" placeholder="8 caracteres" aria-describedby="emailHelp">
+                    <label for="Nome" class="form-label">Valor do Km:</label>
+                    <input type="text" name="CatValor_km" class="form-control" id="nome" placeholder="Insira o valor do km" aria-describedby="emailHelp" value="<%= isEdit ? catAtual.CatValor_km : '' %>">
                   </div>
                   
             </div>
             <div class="col-md-4 col-sm-12">
                   
                   <div class="mt-5" >
-                    <label for="tel" class="form-label">Setor:</label>
-                    <select name="usuarioSetor" class="form-select" aria-label="Default select example">
-                      <option value=""></option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                  </div>
-                  <div class="mt-5" >
-                    <label for="status" class="form-label">Status:</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="usuarioStatus"  id="inlineRadio1" value="1">
-                        <label class="form-check-label" for="inlineRadio1"> Sim</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="usuarioStatus" id="inlineRadio2" value="0">
-                        <label class="form-check-label" for="inlineRadio2">Não</label>
-                      </div>
+                    <label for="tel" class="form-label">Nome:</label>
+                    <input type="text" name="CatNome" class="form-control" id="cpf" placeholder="Digite o nome da categoria" aria-describedby="emailHelp" value="<%= isEdit ? catAtual.CatNome : '' %>" <%= isEdit ? 'readonly' : '' %>>
                   </div>
             </div>
             
@@ -121,7 +140,7 @@
                 <div class="container-sm d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Salvar</button>
                   
-                    <a href="/login" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
+                    <a href="/categorias" class="btn btn-dark btn-block rounded border border-danger my-3 mx-2">Cancelar</a>
                   </form>
                  
 
