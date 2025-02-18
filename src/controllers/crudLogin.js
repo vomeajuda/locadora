@@ -19,6 +19,8 @@ controller.logar = (req, res) => {
                 const usuarioSetor = result[0].usuarioSetor;
                 // Retornar dados do setor
                 return res.json({ success: true, usuarioSetor });
+            } else if (result.length > 0 && result[0].usuarioStatus < 1) {
+                return res.json({ success: false, message: 'Demitido kkkkkkkk'});
             } else {
                 return res.json({ success: false, message: 'Usuário ou senha incorretos' });
             }
