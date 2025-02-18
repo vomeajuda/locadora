@@ -15,7 +15,7 @@ controller.logar = (req, res) => {
             if (err) {
                 return res.status(500).send('Erro ao buscar o login');
             }
-            if (result.length > 0) {
+            if (result.length > 0 && result[0].usuarioStatus > 0) {
                 const usuarioSetor = result[0].usuarioSetor;
                 // Retornar dados do setor
                 return res.json({ success: true, usuarioSetor });
